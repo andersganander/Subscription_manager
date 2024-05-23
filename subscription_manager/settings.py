@@ -143,6 +143,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_REDIRECT_URL = '/services'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/'
 
 # UNSURE IF ANY OF THIS IS NEEDED
 # https://emmakodes.hashnode.dev/how-to-build-a-user-signup-and-login-system-using-django-allauth
