@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Third-party
+    'allauth',
+    'allauth.account',
+    # Local
     'services',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'subscription_manager.urls'
@@ -136,3 +142,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# UNSURE IF ANY OF THIS IS NEEDED
+# https://emmakodes.hashnode.dev/how-to-build-a-user-signup-and-login-system-using-django-allauth
+
+# SITE_ID = 1
+# AUTHENTICATION_BACKENDS = (
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     "django.contrib.auth.backends.ModelBackend",
+# # `allauth` specific authentication methods, such as login by e-mail
+#     "allauth.account.auth_backends.AuthenticationBackend",
+# )
+
+# verification email will be sent to console
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# # Controls the life time of the session.
+# ACCOUNT_SESSION_REMEMBER = True
