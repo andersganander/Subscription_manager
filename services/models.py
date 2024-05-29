@@ -23,7 +23,7 @@ class Service(models.Model):
     default_price = models.IntegerField(blank=True)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE,
-        related_name="services"
+        related_name="service_categorys"
     )
 
     def __str__(self):

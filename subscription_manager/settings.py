@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-ev6zjhz_2t(x^fr9s7q%#omoi9$o^w3*!six0db71ma$w81gz0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-andersganan-subscriptio-hwdw0ycu6pe.ws-eu114.gitpod.io',
+ALLOWED_HOSTS = ['8000-andersganan-subscriptio-xfmmiuo9da8.ws.codeinstitute-ide.net',
                 '.herokuapp.com']
 
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # Local
     'services',
     'accounts',
+    'subscriptions',
 ]
 
 MIDDLEWARE = [
@@ -99,7 +100,7 @@ DATABASES = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.gitpod.io",
+    "https://*.ws.codeinstitute-ide.net",
     "https://*.herokuapp.com"
 ]
 
