@@ -33,5 +33,9 @@ class Subscription(models.Model):
         related_name="subscription_categorys"
     )
 
+    print(f"self.subscriber.username")
+    print(f"self.service.name")
+
     def __str__(self):
-        return f"{self.subscriber.username : self.service.name}"
+        return f"{self.subscriber.username} : {self.service.name}"
+        #return f"{self.name}"
