@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription List</title>
+</head>
+<body>
+    <h1>Subscription List</h1>
+    {% if not subscriptions %}
+    <p>You have no subscriptions !!</p>
+    {% else %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subscription in subscriptions %}
+                <tr>
+                    <td>{{ subscription.service.name }}</td>
+                    <td>{{ subscription.monthly_price }}</td>
+                    <td>{{ subscription.service.category.name }}</td>
+                    <!-- category -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>
