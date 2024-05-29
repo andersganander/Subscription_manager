@@ -24,12 +24,12 @@ class Subscription(models.Model):
         related_name="subscriptions"
     )
     subscription_reminder = models.ForeignKey(
-        Reminder, null=True, on_delete = models.SET_NULL,
+        Reminder, null=True, blank=True, on_delete = models.SET_NULL,
         related_name="reminder"
     )
     paymentmethod = models.CharField(max_length=200, blank=True)
     subscription_category = models.ForeignKey(
-        Category, null=True, on_delete=models.SET_NULL,
+        Category, null=True, blank=True, on_delete=models.SET_NULL,
         related_name="subscription_categorys"
     )
 
