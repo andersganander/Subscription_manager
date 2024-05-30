@@ -7,5 +7,9 @@ class SubscriptionForm(forms.ModelForm):
         model = Subscription
         fields = 'service', 'monthly_price','expiry_date'
     
-    # service_name = forms.ModelChoiceField(queryset=Service.objects.all().order_by('name'), label="Service Name")
-    # price = forms.IntegerField(label="Price")
+
+class SubscriptionEditForm(forms.ModelForm):
+    
+    class Meta:
+        model = Subscription
+        fields = '__all__'

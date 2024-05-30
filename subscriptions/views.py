@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from services.models import Service
-from .forms import SubscriptionForm
+from .forms import SubscriptionForm, SubscriptionEditForm
 from .models import Subscription 
 
 #from django.http import HttpResponse
@@ -43,3 +43,26 @@ def subscription_form_view(request):
         form = SubscriptionForm()
 
     return render(request, 'add_subscription.html', {'form': form})
+
+def subscription_edit_view(request, subscription_id):
+    subscription = get_object_or_404(Subscription, pk=subscription_id)
+
+    if request.method == 'POST':
+        # Handle POST data from the form
+        print("POST")
+        form = SubscriptionEditForm(data=request.POST, instance=subscription)
+        if form.is_valid():
+            print("FORM IS VALID")
+            form.save()
+            print("FORM SAVED")
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Subscription edited'
+            )
+            return redirect('/subscriptions')
+    else:
+        print(f"SUBSCRIPTION: {subscription.subscriber}")
+        #Customer.objects.filter(id=customer_id).first()
+        form = SubscriptionEditForm(instance=subscription)
+        #print (f"Subscription_edit_view Subscription-id: {subscription_id}")
+        return render(request, 'edit_subscription.html', {'form': form, 'subscription': subscription})

@@ -1,4 +1,5 @@
 {% url 'subscription_form' as add_url %}
+{% url 'subscription_edit' as edit_url %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +9,12 @@
     <title>Subscription List</title>
 </head>
 <body>
+     <!-- Show message if there is any-->
+     {% for message in messages %}
+     <div style="background-color:rgb(137, 225, 121)" width="100">
+         {{ message | safe }}
+     </div>
+     {% endfor %}
     <h1>Subscription List</h1>
     {% if not subscriptions %}
     <p>You have no subscriptions !!</p>
@@ -18,6 +25,7 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Category</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +34,7 @@
                     <td>{{ subscription.service.name }}</td>
                     <td>{{ subscription.monthly_price }}</td>
                     <td>{{ subscription.service.category.name }}</td>
-                    <!-- category -->
+                    <td><a href="{% url 'subscription_edit' subscription.id %}">Edit</a></td>
                 </tr>
             {% endfor %}
         </tbody>
