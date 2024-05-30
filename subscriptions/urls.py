@@ -4,4 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.subscriptions_view, name='subscription_list'),
+    path('add/', views.subscription_form_view, name='subscription_form'),
+
 ]

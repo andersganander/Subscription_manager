@@ -1,3 +1,5 @@
+{% url 'subscription_form' as add_url %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,5 +32,8 @@
         </tbody>
     </table>
     {% endif %}
+    <p>
+        <a href="{% url 'subscription_form' %}">Add subscription</a>
+    </p>
 </body>
 </html>
