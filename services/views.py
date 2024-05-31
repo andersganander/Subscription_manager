@@ -5,4 +5,5 @@ from django.http import HttpResponse
  
  
 def services(request):
-  return HttpResponse("<h1>Services</h1>")
+  return render(request, 'service.html')
+  #return HttpResponse("<h1>Services</h1>")

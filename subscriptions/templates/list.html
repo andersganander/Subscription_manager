@@ -1,21 +1,15 @@
+{% extends 'base.html' %} 
 {% url 'subscription_form' as add_url %}
 {% url 'subscription_edit' as edit_url %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subscription List</title>
-</head>
-<body>
+{% block content %}
      <!-- Show message if there is any-->
      {% for message in messages %}
      <div style="background-color:rgb(137, 225, 121)" width="100">
          {{ message | safe }}
      </div>
      {% endfor %}
-    <h1>Subscription List</h1>
+    <h5>Subscription List</h5>
     {% if not subscriptions %}
     <p>You have no subscriptions !!</p>
     {% else %}
@@ -43,5 +37,4 @@
     <p>
         <a href="{% url 'subscription_form' %}">Add subscription</a>
     </p>
-</body>
-</html>
+{% endblock content %}
