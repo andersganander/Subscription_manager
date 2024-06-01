@@ -14,7 +14,7 @@ def subscriptions_view(request):
     print(f"Antal pren: {subscriptions.count()}")
     context = {'subscriptions' : subscriptions}
     #return HttpResponse("<h1>Subscriptions</h1>")
-    return render(request, 'list.html', context)
+    return render(request, 'subscription_list.html', context)
 
 def subscription_form_view(request):
     if request.method == 'POST':
