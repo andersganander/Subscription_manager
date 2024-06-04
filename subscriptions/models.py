@@ -4,15 +4,10 @@ from services.models import Service, Category
 
 # Create your models here.
 
-# TODO Update ERD 
-class Reminder(models.Model):
-    message = models.CharField(max_length=200)
-    reminder_date = models.DateField()
-
 class Subscription(models.Model):
     monthly_price = models.IntegerField()
-    notes = models.TextField(blank=True)
-    expiry_date = models.DateField(blank=True, null=True)
+    notes = models.CharField(max_length=200, blank=True)
+    #expiry_date = models.DateField(blank=True, null=True)
     active = models.BooleanField(default=True)
     created_date = models.DateTimeField(auto_now=True)
     service = models.ForeignKey(
@@ -23,15 +18,18 @@ class Subscription(models.Model):
         User, on_delete = models.CASCADE,
         related_name="subscriptions"
     )
-    subscription_reminder = models.ForeignKey(
-        Reminder, null=True, blank=True, on_delete = models.SET_NULL,
-        related_name="reminder"
-    )
-    paymentmethod = models.CharField(max_length=200, blank=True)
+    # subscription_reminder = models.ForeignKey(
+    #     Reminder, null=True, blank=True, on_delete = models.SET_NULL,
+    #     related_name="reminder"
+    # )
+    #paymentmethod = models.CharField(max_length=200, blank=True)
     subscription_category = models.ForeignKey(
         Category, null=True, blank=True, on_delete=models.SET_NULL,
         related_name="subscription_categorys"
     )
+    reminder_date = models.DateField(blank=True, null=True)
+    reminder_notes = models.CharField(max_length=200, blank=True)
+
 
     print(f"self.subscriber.username")
     print(f"self.service.name")
