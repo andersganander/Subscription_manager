@@ -1,28 +1,44 @@
 
+{% extends 'base.html' %} 
 {% url 'subscription_list' as list_url %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Subscription</title>
-</head>
-<body>
-    <h1>Add subscription</h1>
+
+{% block content %}
     <!-- Show message if there is any-->
     {% for message in messages %}
     <div style="background-color:rgb(137, 225, 121)" width="100">
         {{ message | safe }}
     </div>
     {% endfor %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-    <p>
+
+    <div class="container">
+        <h4>Manage Subscription</h4>
+       
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="waves-effect waves-light btn right">Submit</button>
+            <a href="{% url 'subscription_list' %}" class="btn btn-default right padding-right red">Cancel</a>
+        </form>
+
+    </div>
+    
+   <!-- <p>
         <a href="{% url 'subscription_list' %}">Back to list</a>
-    </p>
-</body>
-</html>
+    </p> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(elems, {format: 'yyyy-mm-dd'});
+           
+            //M.AutoInit();
+        });
+    </script>
+
+   
+
+
+{% endblock content %}
+

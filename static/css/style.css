@@ -18,3 +18,13 @@
     z-index: 10;
     position: absolute;
 }
+
+/* Custom styles */
+.button-padding{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.padding-right{
+    margin-right: 10px;
+}
