@@ -9,41 +9,79 @@
          {{ message | safe }}
      </div>
      {% endfor %}
-    <div class="container">
+    
+     <div class="container">
         <h4 class="center-align">My Subscriptions</h4>
         {% if not subscriptions %}
         <p>You have no subscriptions !!</p>
         {% else %}
-            <!-- Old list
-            {% for subscription in subscriptions %}
-                <tr>
-                    <td>{{ subscription.service.name }}</td>
-                    <td>{{ subscription.monthly_price }}</td>
-                    <td>{{ subscription.service.category.name }}</td>
-                    <td><a href="{% url 'subscription_edit' subscription.id %}">Edit</a></td>
-                </tr>
-            {% endfor %}
-            -->
+            
         <div class="row">
             <div class="col s12 m8 offset-m2">
                 <ul class="collapsible">
-                {% for subscription in subscriptions %}
-                <li>
-                    <div class="collapsible-header" style="background:lightred">
-                      <i class="material-icons">movie</i>
-                      {{ subscription.service.category.name }} - {{ subscription.service.name }} - {{ subscription.monthly_price }}
-                    </div>
-                    <div class="collapsible-body">
-                      <!--<div class="subscription-details"> -->
-                        <br>
-                        <strong>Expiry Date:</strong> {{ subscription.expiry_date }}<br>
-                        <strong>Link:</strong> <a href=" {{ subscription.service.url }} " target="_blank">{{ subscription.service.name }}</a><br>
-                        <strong>Payment Method:</strong> {{ subscription.payment_method }} <br>
-                        <!-- Placeholder for edit form-->
-                      <!--</div>-->
-                    </div>
-                  </li>
-                {% endfor %}
+                    
+                    {% for subscription in subscriptions %}
+        <li>
+            <div class="collapsible-header">
+                <span>
+                    <i class="material-icons">expand_more</i>
+                    {{ subscription.service.name }}
+                </span>
+                <span>{{ subscription.monthly_price }}</span>
+            </div>
+            
+            <div class="collapsible-body">
+                <ul class="collection">
+                    <li class="collection-item">
+                        <span class="title"><b>Active:</b></span>
+                        {% if subscription.active %} Yes
+                        {% else %} No
+                        {% endif %}
+                    </li>
+                    <li class="collection-item">
+                        <span class="title"><b>Price:</b></span> ${{ subscription.monthly_price }}
+                    </li>
+                    <li class="collection-item">
+                        <span class="title"><b>Category:</b></span> {{ subscription.service.category.name }}
+                    </li>
+                    <li class="collection-item">
+                        <span class="title"><b>Notes:</b></span> {{ subscription.notes }}
+                    </li>
+                    <li class="collection-item">
+                        <span class="title"><b>Reminder Date:</b></span> {{ subscription.expiry_date|date:"Y-m-d" }}
+                    </li>
+                    <li class="collection-item">
+                        <span class="title"><b>Reminder Notes:</b></span> {{ subscription.notes }}
+                    </li>
+                    <!--
+                    <li class="collection-item">
+                        <span class="title"><b>Subscriber:</b></span> {{ subscription.subscriber.username }}
+                    </li>
+                    <li class="collection-item">
+                        <span class="title"><b>Expiry Date:</b></span> {{ subscription.expiry_date|date:"Y-m-d" }}
+                    </li>
+                    <li class="collection-item">
+                        <span class="title"><b>Notes:</b></span> {{ subscription.notes }}
+                    </li>
+                    <li class="collection-item">
+                        <span class="title"><b>Active:</b></span>
+                        {% if subscription.active %} Yes
+                        {% else %} No
+                        {% endif %}
+                    </li>
+                    <li class="collection-item">
+                        <span class="title"><b>Payment Method:</b></span> {{ subscription.paymentmethod }}
+                    </li> -->
+                  
+                </ul>
+                <div class="right">    
+                    <a href="{% url 'subscription_edit' subscription.id %}" class="btn-small waves-effect waves-light"><i class="material-icons left">edit</i>Edit</a>
+                </div>
+            </div>
+            
+        </li>
+        {% endfor %}
+
                 </ul>
             </div>
         </div>

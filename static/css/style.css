@@ -3,3 +3,18 @@
 .collapsible .collapsible-body{
     padding:3px;
   }
+
+.collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: aliceblue;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.footer-fixed{
+    z-index: 10;
+    position: absolute;
+}

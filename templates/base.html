@@ -37,11 +37,6 @@
             padding: 10px 0;
         }
 
-        /* Styles for list.html */
-        .collapsible-header {
-            font-size: 1.2em;
-            font-weight: bold;
-        }
         .subscription-details {
             padding: 10px 0;
         }
@@ -87,6 +82,7 @@
         document.addEventListener('DOMContentLoaded', function() {
           var elems = document.querySelectorAll('.collapsible');
           var instances = M.Collapsible.init(elems);
+          M.updateTextFields();
     
           document.querySelectorAll('.edit-btn').forEach(function(button) {
             button.addEventListener('click', function() {
