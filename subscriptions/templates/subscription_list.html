@@ -15,9 +15,18 @@
         {% if not subscriptions %}
         <p>You have no subscriptions !!</p>
         {% else %}
-            
+        <!-- ADD STATUS ROW (nr of subscriptions etc) -->
+
+       
+        <!-- Subscription list start-->
         <div class="row">
             <div class="col s12 m8 offset-m2">
+                <div>
+                     <!-- ICONS for adding subscription ( and summary ) -->
+                     <a href="{% url 'subscription_form' %}"><i class="medium material-icons right">add</i></a>
+                     
+                     <!-- <a class="waves-effect waves-light btn modal-trigger" href="#add-modal">Modal</a> -->
+                </div>
                 <ul class="collapsible">
                     
                     {% for subscription in subscriptions %}
@@ -53,25 +62,7 @@
                     <li class="collection-item">
                         <span class="title"><b>Reminder Notes:</b></span> {{ subscription.reminder_notes }}
                     </li>
-                    <!--
-                    <li class="collection-item">
-                        <span class="title"><b>Subscriber:</b></span> {{ subscription.subscriber.username }}
-                    </li>
-                    <li class="collection-item">
-                        <span class="title"><b>Expiry Date:</b></span> {{ subscription.expiry_date|date:"Y-m-d" }}
-                    </li>
-                    <li class="collection-item">
-                        <span class="title"><b>Notes:</b></span> {{ subscription.notes }}
-                    </li>
-                    <li class="collection-item">
-                        <span class="title"><b>Active:</b></span>
-                        {% if subscription.active %} Yes
-                        {% else %} No
-                        {% endif %}
-                    </li>
-                    <li class="collection-item">
-                        <span class="title"><b>Payment Method:</b></span> {{ subscription.paymentmethod }}
-                    </li> -->
+
                   
                 </ul>
                 <div class="right button-padding">    
@@ -89,8 +80,5 @@
         {% endif %}
     <!-- End Div Container-->
     </div>
-        <!-- Ev göra om till ikon och flytta överst -->    
-        <p>
-        <a href="{% url 'subscription_form' %}">Add subscription</a>
-    </p>
+
 {% endblock content %}

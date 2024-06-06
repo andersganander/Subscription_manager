@@ -19,6 +19,11 @@
     position: absolute;
 }
 
+.modal { 
+    width: 25% !important ; 
+    height: 25% !important ; 
+} 
+
 /* Custom styles */
 .button-padding{
     margin-top: 10px;

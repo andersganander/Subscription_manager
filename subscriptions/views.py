@@ -1,5 +1,7 @@
+import json
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
+
 from services.models import Service
 from .forms import SubscriptionForm, SubscriptionEditForm
 from .models import Subscription 
@@ -39,8 +41,13 @@ def subscription_form_view(request):
                 request, messages.SUCCESS,
                 'Subscription added'
             )
+            return redirect('/subscriptions')
     else:
         form = SubscriptionForm()
+        services = Service.objects.all().values('name', 'default_price')  # Fetch data
+        services_dict = {service['name']: service['default_price'] for service in services}
+        context = {'services_dict': services_dict, 'form': form}
+        return render(request, 'add_subscription.html', context)
 
     return render(request, 'add_subscription.html', {'form': form})
 

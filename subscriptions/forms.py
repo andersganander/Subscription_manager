@@ -6,6 +6,10 @@ class SubscriptionForm(forms.ModelForm):
     class Meta:
         model = Subscription
         fields = 'service', 'monthly_price'
+        widgets = {
+           'service': forms.Select(attrs={'class': 'browser-default'}),
+           'monthly_price': forms.NumberInput(attrs={'class': 'validate'}),
+        }
     
 
 # class SubscriptionEditForm(forms.ModelForm):

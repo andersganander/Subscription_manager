@@ -80,16 +80,16 @@
     <!-- Script for list.html -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('.collapsible');
-          var instances = M.Collapsible.init(elems);
-          M.updateTextFields();
-    
-          document.querySelectorAll('.edit-btn').forEach(function(button) {
-            button.addEventListener('click', function() {
-              var form = this.nextElementSibling;
-              form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            let collapsibles = document.querySelectorAll('.collapsible');
+            M.Collapsible.init(collapsibles);
+            M.updateTextFields();
+
+            document.querySelectorAll('.edit-btn').forEach(function(button) {
+                button.addEventListener('click', function() {
+                var form = this.nextElementSibling;
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                });
             });
-          });
         });
       </script>
 </body>
