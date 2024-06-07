@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
+from django.db.models import Count, Sum, Prefetch
 
 from services.models import Service
 from .forms import SubscriptionForm, SubscriptionEditForm
@@ -14,9 +15,18 @@ def subscriptions_view(request):
     #subscriptions = Subscription.objects.all()
     print(f"User: {request.user}")
     print(f"Antal pren: {subscriptions.count()}")
-    context = {'subscriptions' : subscriptions}
+    summary = summarize_subscriptions(subscriptions)
+    #print(categories_total(subscriptions))
+    context = {'subscriptions' : subscriptions, 'summary': summary}
     #return HttpResponse("<h1>Subscriptions</h1>")
     return render(request, 'subscription_list.html', context)
+
+def subscriptions_summary_view(request):
+    subscriptions = Subscription.objects.filter(subscriber=request.user)
+    cat_summary = categories_total(subscriptions)
+    summary = summarize_subscriptions(subscriptions)
+    context = {'cat_summary': cat_summary, 'summary': summary}
+    return render(request, 'subscription_summary.html', context)
 
 def subscription_form_view(request):
     if request.method == 'POST':
@@ -73,3 +83,39 @@ def subscription_edit_view(request, subscription_id):
         form = SubscriptionEditForm(instance=subscription)
         #print (f"Subscription_edit_view Subscription-id: {subscription_id}")
         return render(request, 'edit_subscription.html', {'form': form, 'subscription': subscription})
+
+
+def summarize_subscriptions(subscriptions):
+    #print(f"subscriptions: {subscriptions}")
+    #print(f"subscriptions.count(): {subscriptions.count()}")
+    total_active = 0
+    total_price = 0
+    for subscription in subscriptions:
+        if subscription.active == True:
+            total_active += 1
+            total_price += subscription.monthly_price
+    
+    summary_dict = {
+        'total_active': total_active,
+        'total_price': total_price
+    }
+
+    print(f"summary_dict: {summary_dict}")
+    return summary_dict
+
+def categories_total(subscriptions):
+    #active_subscriptions = Subscription.objects.filter(active=True)
+    subscriptions_categories = Subscription.objects.prefetch_related(Prefetch('subscription_category')).filter(active=True)
+
+    # Group by category and aggregate count and total cost
+    categories = (
+        subscriptions_categories
+       .values('subscription_category__name')
+       .annotate(subscription_count=Count('id'), total_cost=Sum('monthly_price'))
+    )
+    
+    # Convert queryset to list of dictionaries
+    categories_list = [{"category_name": item['subscription_category__name'], "subscription_count": item["subscription_count"], "total_cost": item["total_cost"]} for item in categories]
+    
+    #return JsonResponse(categories_list, safe=False)
+    return categories_list

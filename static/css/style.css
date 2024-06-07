@@ -8,8 +8,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     background-color: aliceblue;
+    width: 100%;
     font-size: 1.2em;
     font-weight: bold;
 }
@@ -33,6 +33,10 @@
 .button-padding{
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.cell-centered{
+    text-align: center;
 }
 
 .padding-right{

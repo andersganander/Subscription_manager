@@ -1,6 +1,7 @@
 {% extends 'base.html' %} 
 {% url 'subscription_form' as add_url %}
 {% url 'subscription_edit' as edit_url %}
+{% url 'subscription_summary' as summary_url %}
 
 {% block content %}
      <!-- Show message if there is any-->
@@ -21,15 +22,22 @@
         <!-- Subscription list start-->
         <div class="row">
             <div class="col s12 m8 offset-m2">
-                <div>
-                     <!-- ICONS for adding subscription ( and summary ) -->
-                    
+                <!-- <div id="summary_div">
+                    {{ summary.total_active }} 
                      <a href="{% url 'subscription_form' %}"><i class="medium material-icons right green-text padding-top">add</i></a>
                      <a href=""><i class="medium material-icons right green-text padding-top">insert_chart</i></a>
+                </div> -->
 
-                     
-                     <!-- <a class="waves-effect waves-light btn modal-trigger" href="#add-modal">Modal</a> -->
+                <div id="summary_div" class="row valign-wrapper" style="justify-content: space-between; align-items: flex-end;">
+                    <div class="col s8">
+                        <h6 class="valign-wrapper" style="height: 100%;"><b>{{ summary.total_active }} active subscriptions, monthly cost: {{ summary.total_price }}</b></h6>
+                    </div>
+                    <div class="col s4 right-align">
+                        <a href="{% url 'subscription_form' %}"><i class="small material-icons right green-text padding-top">add</i></a>
+                        <a href="{% url 'subscription_summary' %}"><i class="small material-icons right green-text padding-top">insert_chart</i></a>
+                    </div>
                 </div>
+
                 <ul class="collapsible">
                     
                     {% for subscription in subscriptions %}
