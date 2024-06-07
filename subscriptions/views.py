@@ -22,8 +22,10 @@ def subscriptions_view(request):
     return render(request, 'subscription_list.html', context)
 
 def subscriptions_summary_view(request):
-    subscriptions = Subscription.objects.filter(subscriber=request.user)
-    cat_summary = categories_total(subscriptions)
+    subscriptions = Subscription.objects.filter(subscriber=request.user, active=True)
+    print(f"Cat Summary User: {request.user}")
+    print(f"Cat Summary Antal pren: {subscriptions.count()}")
+    cat_summary = categories_total(request, subscriptions)
     summary = summarize_subscriptions(subscriptions)
     context = {'cat_summary': cat_summary, 'summary': summary}
     return render(request, 'subscription_summary.html', context)
@@ -103,10 +105,15 @@ def summarize_subscriptions(subscriptions):
     print(f"summary_dict: {summary_dict}")
     return summary_dict
 
-def categories_total(subscriptions):
+def categories_total(request, subscriptions):
     #active_subscriptions = Subscription.objects.filter(active=True)
-    subscriptions_categories = Subscription.objects.prefetch_related(Prefetch('subscription_category')).filter(active=True)
+    #subscriptions_categories = Subscription.objects.filter(subscriber=request.user, active=True)
+    #subscriptions_categories = Subscription.objects.prefetch_related(Prefetch('subscription_category'))
+    subscriptions_categories = subscriptions.prefetch_related(Prefetch('subscription_category'))
 
+    print(f"subscriptions_categories: {subscriptions_categories}")
+  
+  
     # Group by category and aggregate count and total cost
     categories = (
         subscriptions_categories
