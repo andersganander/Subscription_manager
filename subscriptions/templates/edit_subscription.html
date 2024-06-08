@@ -11,15 +11,17 @@
     </div>
     {% endfor %}
     <div class="row">
-        <div class="col s12 m8 offset-m2">
+        <div class="col s12 m8 offset-m2 bottom">
             <div class="container">
-            <h4>Manage Subscription</h4>
+            <h5>Edit Subscription for {{ subscription.service.name}}</h5>
+            
         
             <form action="" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="waves-effect waves-light btn right">Submit</button>
                 <a href="{% url 'subscription_list' %}" class="btn btn-default right padding-right red">Cancel</a>
+                <a href=""><i id="clear_reminder" class="small material-icons left red-text tooltipped" data-position="top" data-tooltip="Clear reminder">notifications_off</i></a>
             </form>
             </div>
         </div>
@@ -32,9 +34,30 @@
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.datepicker');
             var instances = M.Datepicker.init(elems, {format: 'yyyy-mm-dd'});
+            let tooltips = document.querySelectorAll('.tooltipped');
+            M.Tooltip.init(tooltips);
            
-            //M.AutoInit();
+            // event listener for link to clear reminder input fields
+            var resetLink = document.getElementById('clear_reminder');
+
+            // Add click event listener to the link
+            resetLink.addEventListener('click', function(event) {
+                // Prevent the default action of the link
+                event.preventDefault();
+
+                // Get the text fields by their IDs
+                var textField1 = document.getElementById('id_reminder_date');
+                var textField2 = document.getElementById('id_reminder_notes');
+
+                // Reset the values of the text fields
+                textField1.setAttribute('value','');
+                textField2.setAttribute('value','');
+            });
+
         });
+
+
+
     </script>
 
    

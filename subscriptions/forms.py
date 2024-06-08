@@ -32,6 +32,15 @@ class SubscriptionEditForm(forms.ModelForm):
             'reminder_date': forms.DateInput(attrs={'class': 'datepicker'}),
             'reminder_notes': forms.TextInput(attrs={'class': 'validate'}),
             'subscription_category': forms.Select(attrs={'class': 'browser-default'}), 
-        }
+        } 
 
-        # 'active': forms.NullBooleanSelect(attrs={'class': 'browser-default'}),
+        # model = Subscription
+        # fields = ['active', 'monthly_price', 'subscription_category', 'notes', 'reminder_date', 'reminder_notes' ]
+        # widgets = {
+        #     'active': forms.CheckboxInput(attrs={'class': 'switch'}),
+        #     'monthly_price': forms.NumberInput(attrs={'class': 'validate'}),
+        #     'notes': forms.TextInput(attrs={'class': 'validate'}),
+        #     'reminder_date': forms.DateInput(attrs={'class': 'datepicker'}),
+        #     'reminder_notes': forms.TextInput(attrs={'class': 'validate'}),
+        #     'subscription_category': forms.Select(attrs={'class': 'browser-default'}), 
+        # } 

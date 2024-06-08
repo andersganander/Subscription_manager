@@ -24,12 +24,16 @@
     position: absolute;
 }
 
-.modal { 
-    width: 25% !important ; 
-    height: 25% !important ; 
-} 
+/*.modal { 
+    width: 50% !important ; 
+    height: 50% !important ; 
+} */
 
 /* Custom styles */
+.bottom{
+    margin-bottom: 50px !important;
+}
+
 .button-padding{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -37,6 +41,10 @@
 
 .cell-centered{
     text-align: center;
+}
+
+.no-icon{
+    display: none;
 }
 
 .padding-right{

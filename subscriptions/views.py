@@ -1,3 +1,4 @@
+import datetime
 import json
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
@@ -15,9 +16,11 @@ def subscriptions_view(request):
     #subscriptions = Subscription.objects.all()
     print(f"User: {request.user}")
     print(f"Antal pren: {subscriptions.count()}")
+    print(f"Today: {datetime.date.today()}")
+    today = datetime.date.today()
     summary = summarize_subscriptions(subscriptions)
     #print(categories_total(subscriptions))
-    context = {'subscriptions' : subscriptions, 'summary': summary}
+    context = {'subscriptions' : subscriptions, 'summary': summary, 'today': today}
     #return HttpResponse("<h1>Subscriptions</h1>")
     return render(request, 'subscription_list.html', context)
 
