@@ -54,7 +54,7 @@ def subscription_form_view(request):
             form = SubscriptionForm()
             messages.add_message(
                 request, messages.SUCCESS,
-                'Subscription added'
+                'Subscription successfully added'
             )
             return redirect('/subscriptions')
     else:
@@ -79,7 +79,7 @@ def subscription_edit_view(request, subscription_id):
             print("FORM SAVED")
             messages.add_message(
                 request, messages.SUCCESS,
-                'Subscription edited'
+                'Subscription successfully saved'
             )
             return redirect('/subscriptions')
     else:
@@ -88,6 +88,16 @@ def subscription_edit_view(request, subscription_id):
         form = SubscriptionEditForm(instance=subscription)
         #print (f"Subscription_edit_view Subscription-id: {subscription_id}")
         return render(request, 'edit_subscription.html', {'form': form, 'subscription': subscription})
+
+def subscription_delete_view(request, subscription_id):
+    subscription = Subscription.objects.filter(id=subscription_id)
+    if subscription.exists():
+        subscription.delete()
+        messages.add_message(
+            request, messages.SUCCESS,
+            'Subscription successfully deleted'
+        )
+    return redirect('/subscriptions')
 
 
 def summarize_subscriptions(subscriptions):
