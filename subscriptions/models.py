@@ -13,6 +13,8 @@ class Subscription(models.Model):
         Service, on_delete=models.RESTRICT,
         related_name="subscription"
     )
+    subscription_name = models.CharField(max_length=100)
+
     subscriber = models.ForeignKey(
         User, on_delete = models.CASCADE,
         related_name="subscriptions"
@@ -27,8 +29,8 @@ class Subscription(models.Model):
 
 
     print(f"self.subscriber.username")
-    print(f"self.service.name")
+    print(f"self.service.subscription_name")
 
     def __str__(self):
-        return f"{self.subscriber.username} : {self.service.name}"
+        return f"{self.subscriber.username} : {self.subscription_name}"
         #return f"{self.name}"

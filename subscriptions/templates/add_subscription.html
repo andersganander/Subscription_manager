@@ -39,6 +39,7 @@
             const selectedPrice = servicesDict[selectedName];  // Gets the price using the service name as key
             console.log(selectedPrice);
             document.getElementById('id_monthly_price').value = selectedPrice || '';  // Updates the price text field
+            document.getElementById('id_subscription_name').value = selectedName || ''; // Updates the subscription name text field
         });
 
     </script>
