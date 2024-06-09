@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # Third-party
     'allauth',
     'allauth.account',
@@ -51,6 +52,10 @@ INSTALLED_APPS = [
     'accounts',
     'subscriptions',
 ]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/subscriptions'
+LOGOUT_REDIRECT_URL = '/accounts/login'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -124,6 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -149,8 +155,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/services'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/'
+#LOGIN_REDIRECT_URL = '/services'
+#ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/'
 
 # UNSURE IF ANY OF THIS IS NEEDED
 # https://emmakodes.hashnode.dev/how-to-build-a-user-signup-and-login-system-using-django-allauth

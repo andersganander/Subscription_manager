@@ -12,6 +12,9 @@ from .models import Subscription
 
 def subscriptions_view(request):
     # check for user
+    if not request.user.is_authenticated:
+        return redirect('/accounts/login')
+    ###
     subscriptions = Subscription.objects.filter(subscriber=request.user)
     #subscriptions = Subscription.objects.all()
     print(f"User: {request.user}")
