@@ -54,13 +54,14 @@
     <!-- Navigation Bar -->
     <nav>
         <div class="nav-wrapper">
-            <img src="{% static 'images/calendar_sm.png' %}" width="60" height="60">
+            <!--<img src="{% static 'images/calendar_sm.png' %}" width="60" height="60">-->
+            <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <a href="#" class="brand-logo">Sub Man</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="">Home</a></li>
                 <li><a href="{% url 'subscription_list' %}">Subscriptions</a></li>
-                <li><a href="">Reminders</a></li>
-                <li><a href="{% url 'service_list' %}">Services</a></li>    
+                <!--<li><a href="">Reminders</a></li>
+                <li><a href="{% url 'service_list' %}">Services</a></li>    -->
                 <!-- AUTHENTICATION -->
                 {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -79,6 +80,25 @@
             </ul>
         </div>
     </nav>
+
+    <ul class="sidenav" id="mobile-menu">
+        <li><a href="">Home</a></li>
+        <li><a href="{% url 'subscription_list' %}">Subscriptions</a></li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+                href="{% url 'account_signup' %}">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+        </li>
+        {% endif %}
+
+      </ul>
 
     <!-- Main Content -->
     <main>
@@ -103,6 +123,8 @@
             M.Collapsible.init(collapsibles);
             M.updateTextFields();
 
+            let sidenav = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(sidenav);
 
             document.querySelectorAll('.edit-btn').forEach(function(button) {
                 button.addEventListener('click', function() {
