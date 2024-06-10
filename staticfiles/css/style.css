@@ -3,3 +3,54 @@
 .collapsible .collapsible-body{
     padding:3px;
   }
+
+.collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: aliceblue;
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.collapsible-margin-bottom {
+    margin-bottom: 50px;
+}
+
+
+.footer-fixed{
+    z-index: 10;
+    position: absolute;
+}
+
+.delete-modal { 
+    /* width: 50% !important ; 
+    height: 50% !important ;  */
+} 
+
+/* Custom styles */
+.bottom{
+    margin-bottom: 50px !important;
+}
+
+.button-padding{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.cell-centered{
+    text-align: center;
+}
+
+.no-icon{
+    display: none;
+}
+
+.padding-right{
+    margin-right: 10px;
+}
+
+.padding-top{
+    margin-top: 10px;
+}
