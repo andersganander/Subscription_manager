@@ -34,3 +34,6 @@ class Subscription(models.Model):
     def __str__(self):
         return f"{self.subscriber.username} : {self.subscription_name}"
         #return f"{self.name}"
+
+    class Meta:
+        unique_together = ('subscription_name', 'subscriber',)

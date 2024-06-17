@@ -3,6 +3,7 @@ import json
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.db.models import Count, Sum, Prefetch
+from django.db import IntegrityError
 
 from services.models import Service
 from .forms import SubscriptionForm, SubscriptionEditForm
@@ -28,6 +29,18 @@ def subscriptions_view(request):
     return render(request, 'subscription_list.html', context)
 
 def subscriptions_summary_view(request):
+    """
+    This view function is responsible for displaying a summary of subscriptions.
+    It filters the subscriptions based on the current user and only includes active subscriptions.
+    It then calls the 'categories_total' and 'summarize_subscriptions' functions to get the necessary data.
+    The data is then passed to the 'subscription_summary.html' template for rendering.
+
+    Parameters:
+    request (HttpRequest): The request object containing information about the current HTTP request.
+
+    Returns:
+    HttpResponse: The rendered 'subscription_summary.html' template with the necessary context data.
+    """
     subscriptions = Subscription.objects.filter(subscriber=request.user, active=True)
     print(f"Cat Summary User: {request.user}")
     print(f"Cat Summary Antal pren: {subscriptions.count()}")
@@ -54,13 +67,25 @@ def subscription_form_view(request):
             #subscription.service = service
 
             # Save object and show success message
-            subscription.save()  
+            try:
+                subscription.save()
+            except IntegrityError as e:
+                messages.add_message(
+                    request, messages.ERROR, 'The service name already exists, choose another one'
+                )
+                return redirect('/subscriptions/add')
             form = SubscriptionForm()
             messages.add_message(
                 request, messages.SUCCESS,
                 'Subscription successfully added'
             )
             return redirect('/subscriptions')
+        # else:
+        #     messages.add_message(
+        #         request, messages.ERROR,
+        #         'Subscription could not be added'
+        #     )
+        #     return redirect('/subscriptions/add')
     else:
         form = SubscriptionForm()
         services = Service.objects.all().values('name', 'default_price')  # Fetch data
