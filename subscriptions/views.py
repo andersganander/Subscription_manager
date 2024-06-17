@@ -49,6 +49,7 @@ def subscription_form_view(request):
             # Add relations
             subscription = form.save(commit=False)
             subscription.subscriber = request.user
+            subscription.subscription_category = subscription.service.category
             #service = Service.objects.get(name=service_name)
             #subscription.service = service
 
