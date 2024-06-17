@@ -11,11 +11,6 @@
        
 
         <h4 class="center-align">My Subscriptions</h4>
-        {% if not subscriptions %}
-        <p>You have no subscriptions !!</p>
-        {% else %}
-        <!-- ADD STATUS ROW (nr of subscriptions etc) -->
-
        
         <!-- Subscription list start-->
         <div class="row">
@@ -30,7 +25,11 @@
 
                 <div id="summary_div" class="row valign-wrapper" style="justify-content: space-between; align-items: flex-end;">
                     <div class="col s8">
+                        {% if subscriptions %}
                         <h6 class="valign-wrapper" style="height: 100%;"><b>{{ summary.total_active }} active subscriptions, monthly cost: {{ summary.total_price }}</b></h6>
+                        {% else %}
+                        <h6 class="valign-wrapper" style="height: 100%;"><b>You have no subscriptions!!</b></h6>
+                        {% endif %}
                     </div>
                     <div class="col s4 right-align">
                         <a href="{% url 'subscription_form' %}"><i class="small material-icons right green-text padding-top">add</i></a>
@@ -151,7 +150,7 @@
                 </ul>
             </div>
         </div>
-        {% endif %}
+        <!-- Subscription list end-->
     <!-- End Div Container-->
     </div>
 
