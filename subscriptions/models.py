@@ -24,6 +24,7 @@ class Subscription(models.Model):
         Category, null=True, blank=True, on_delete=models.SET_NULL,
         related_name="subscription_categorys"
     )
+    reminder_email = models.EmailField(max_length=254, blank=True)
     reminder_date = models.DateField(blank=True, null=True)
     reminder_notes = models.CharField(max_length=200, blank=True)
 

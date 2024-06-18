@@ -7,7 +7,7 @@ from django.db import IntegrityError
 
 from services.models import Service
 from .forms import SubscriptionForm, SubscriptionEditForm
-from .models import Subscription 
+from .models import Subscription, User 
 
 #from django.http import HttpResponse
 
@@ -50,6 +50,18 @@ def subscriptions_summary_view(request):
     return render(request, 'subscription_summary.html', context)
 
 def subscription_form_view(request):
+    """
+    This view function handles the subscription form. It processes POST requests and saves new subscriptions.
+    If the request method is POST, it validates the form data, creates a new subscription object, adds relations,
+    and saves it to the database. If the service name already exists, it shows an error message.
+    If the request method is not POST, it renders the subscription form with a list of services.
+
+    Parameters:
+    request (HttpRequest): The request object containing information about the current HTTP request.
+
+    Returns:
+    HttpResponse: The rendered 'add_subscription.html' template with the necessary context data or a redirect to the subscriptions page.
+    """
     if request.method == 'POST':
         # Handle POST data from the form
         form = SubscriptionForm(data=request.POST)
@@ -114,6 +126,14 @@ def subscription_edit_view(request, subscription_id):
     else:
         print(f"SUBSCRIPTION: {subscription.subscriber}")
         #Customer.objects.filter(id=customer_id).first()
+        # get email from user object and set reminder_email
+
+        user_email = User.objects.get(username=subscription.subscriber).email
+        if user_email:
+            print(f"user_email: {user_email}")
+            subscription.reminder_email = user_email
+            print(f"subscription.reminder_email: {subscription.reminder_email}")
+        
         form = SubscriptionEditForm(instance=subscription)
         #print (f"Subscription_edit_view Subscription-id: {subscription_id}")
         return render(request, 'edit_subscription.html', {'form': form, 'subscription': subscription})

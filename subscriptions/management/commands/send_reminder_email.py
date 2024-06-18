@@ -23,7 +23,8 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(f"Reminder: {sub.subscription_name}"))
                     # send mail 
                     subject = 'Reminder from Subscription Manager'
-                    user_email = User.objects.get(username=sub.subscriber).email
+                    # user_email = User.objects.get(username=sub.subscriber).email
+                    user_email = sub.reminder_email
                     message = f"Hi {sub.subscriber}, here is your reminder for {sub.subscription_name}.\r\n\r\n{sub.reminder_notes}\r\n\r\nThe Subscription Manager Team"
                     #message = f'{sub.reminder_notes}'
                     email_from = settings.EMAIL_HOST_USER

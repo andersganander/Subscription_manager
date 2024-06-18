@@ -100,6 +100,10 @@
                         <span class="grey-text text-darken-1"> {{ subscription.notes }}</span>
                     </li>
                     <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
+                        <span class="title grey-text text-darken-1"><b>Reminder E-mail:</b></span> 
+                        <span class="grey-text text-darken-1"> {{ subscription.reminder_email }}</span>
+                    </li>
+                    <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
                         <span class="title grey-text text-darken-1"><b>Reminder Date:</b></span> 
                         <span class="grey-text text-darken-1"> {{ subscription.reminder_date|date:"Y-m-d" }}</span>
                     </li>
