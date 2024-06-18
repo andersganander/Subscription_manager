@@ -1,5 +1,6 @@
 import datetime
 import json
+from collections import OrderedDict
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.db.models import Count, Sum, Prefetch
@@ -16,7 +17,7 @@ def subscriptions_view(request):
     if not request.user.is_authenticated:
         return redirect('/accounts/login')
     ###
-    subscriptions = Subscription.objects.filter(subscriber=request.user)
+    subscriptions = Subscription.objects.filter(subscriber=request.user).order_by('subscription_name')
     #subscriptions = Subscription.objects.all()
     print(f"User: {request.user}")
     print(f"Antal pren: {subscriptions.count()}")
@@ -92,17 +93,14 @@ def subscription_form_view(request):
                 'Subscription successfully added'
             )
             return redirect('/subscriptions')
-        # else:
-        #     messages.add_message(
-        #         request, messages.ERROR,
-        #         'Subscription could not be added'
-        #     )
-        #     return redirect('/subscriptions/add')
     else:
         form = SubscriptionForm()
-        services = Service.objects.all().values('name', 'default_price')  # Fetch data
+        services = Service.objects.all().order_by('name').values('name', 'default_price')
         services_dict = {service['name']: service['default_price'] for service in services}
-        context = {'services_dict': services_dict, 'form': form}
+        services_dict_sorted = OrderedDict(sorted(services_dict.items()))
+        print(services_dict_sorted)
+        print(services_dict_sorted)
+        context = {'services_dict': services_dict_sorted, 'form': form}
         return render(request, 'add_subscription.html', context)
 
     return render(request, 'add_subscription.html', {'form': form})
