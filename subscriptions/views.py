@@ -128,7 +128,11 @@ def subscription_edit_view(request, subscription_id):
         #Customer.objects.filter(id=customer_id).first()
         # get email from user object and set reminder_email
 
-        user_email = User.objects.get(username=subscription.subscriber).email
+        if subscription.reminder_email:
+            user_email = subscription.reminder_email
+        else:
+            user_email = User.objects.get(username=subscription.subscriber).email
+
         if user_email:
             print(f"user_email: {user_email}")
             subscription.reminder_email = user_email
