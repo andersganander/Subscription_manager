@@ -6,6 +6,7 @@
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
+{% url 'about' as about_url %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,7 @@
             <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <a href="#" class="brand-logo">Sub Man</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'subscription_list' %}">Subscriptions</a></li>
                 <!--<li><a href="">Reminders</a></li>
                 <li><a href="{% url 'service_list' %}">Services</a></li>    -->
@@ -82,7 +83,7 @@
     </nav>
 
     <ul class="sidenav" id="mobile-menu">
-        <li><a href="">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
         <li><a href="{% url 'subscription_list' %}">Subscriptions</a></li>
         {% if user.is_authenticated %}
         <li class="nav-item">

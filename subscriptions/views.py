@@ -168,3 +168,6 @@ def categories_total(request, subscriptions):
     
     #return JsonResponse(categories_list, safe=False)
     return categories_list
+
+def about_view(request):
+    return render(request, 'about.html')

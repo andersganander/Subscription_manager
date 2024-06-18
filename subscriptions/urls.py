@@ -8,6 +8,7 @@ urlpatterns = [
     path('edit/<int:subscription_id>',views.subscription_edit_view, name='subscription_edit'),
     path('delete/<int:subscription_id>/', views.subscription_delete_view, name='subscription_delete'),
     path('summary/', views.subscriptions_summary_view, name='subscription_summary'),
+    path('about/', views.about_view, name='about'),
 ]
 
 #  path('delete/<int:subscription_id>',views.subscription_delete_view, name='subscription_delete'),

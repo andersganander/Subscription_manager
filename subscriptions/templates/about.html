@@ -1,0 +1,91 @@
+
+<!-- <head>
+    
+    <style>
+        .container {
+            max-width: 50%;
+        }
+        @media (max-width: 992px) {
+            .container {
+                max-width: 80%;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                max-width: 95%;
+            }
+        }
+        .center-content {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .left-align {
+            text-align: left;
+        }
+    </style>
+</head> -->
+
+
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container center-content">
+        <!-- Inledande beskrivning -->
+        <section class="left-align">
+            <h2>Managing Your Subscriptions</h2>
+            <p>Keeping track of various subscriptions for online services can be challenging. It’s often difficult to get a clear overview of your monthly expenses. Subscription Manager is here to help you manage and monitor all your subscriptions in one place.</p>
+        </section>
+
+        <!-- Bildplatshållare -->
+        <section>
+            <img src="/static/images/subman_start_comp.png" alt="Placeholder Image" style="width: 100%; height: auto;">
+        </section>
+
+        <!-- Presentation av Subscription Manager -->
+        <section class="left-align">
+            <h2>About Subscription Manager</h2>
+            <p>Subscription Manager is a powerful tool designed to simplify the way you handle your subscriptions. Here are some of the key features:</p>
+            <ul>
+                <li>Track all your subscriptions in one place</li>
+                <li>Get reminders for upcoming renewals</li>
+                <li>Analyze your monthly expenses</li>
+                <li>Easy-to-use interface</li>
+            </ul>
+        </section>
+
+        <!-- Hjälptexter -->
+        <section class="left-align">
+            <h2>How to Use Subscription Manager</h2>
+            <h5>Adding Subscriptions</h5>
+            <img src="placeholder-image.jpg" alt="Adding Subscriptions" style="width: 100%; height: auto;">
+            <ul>
+                <li>Navigate to the 'Add Subscription' section.</li>
+                <li>Fill in the details of your subscription.</li>
+                <li>Click the 'Save' button to add the subscription.</li>
+            </ul>
+            <br>
+            <h5>Viewing Subscriptions</h5>
+            <img src="placeholder-image.jpg" alt="Viewing Subscriptions" style="width: 100%; height: auto;">
+            <ul>
+                <li>Go to the 'My Subscriptions' section.</li>
+                <li>View all your subscriptions listed.</li>
+                <li>Sort and filter subscriptions as needed.</li>
+            </ul>
+            <br>
+            <h5>Editing Subscriptions</h5>
+            <img src="placeholder-image.jpg" alt="Editing Subscriptions" style="width: 100%; height: auto;">
+            <ul>
+                <li>Click on a subscription in the 'My Subscriptions' section.</li>
+                <li>Edit the details of the subscription.</li>
+                <li>Click the 'Save' button to update the subscription.</li>
+            </ul>
+            <br>
+            <h5>Setting Reminders</h5>
+            <img src="placeholder-image.jpg" alt="Setting Reminders" style="width: 100%; height: auto;">
+            <ul>
+                <li>Navigate to the 'Settings' section.</li>
+                <li>Set reminders for upcoming renewals.</li>
+                <li>Save your settings to avoid missing important dates.</li>
+            </ul>
+        </section>
+    </div>
+{% endblock %}
