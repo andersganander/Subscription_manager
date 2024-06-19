@@ -20,35 +20,6 @@
 
     <!-- Import Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-     
-    <style>
-        body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-        main {
-            flex: 1 0 auto;
-        }
-        .footer-fixed {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        .subscription-details {
-            padding: 10px 0;
-        }
-        .edit-form {
-            display: none;
-        }
-
-    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -61,7 +32,7 @@
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'subscription_list' %}">Subscriptions</a></li>
 
-                <!-- AUTHENTICATION -->
+                <!-- Links in navbar depending on login status -->
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
@@ -75,11 +46,11 @@
                     <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
                 </li>
                 {% endif %}
-                <!-- -->
             </ul>
         </div>
     </nav>
 
+    <!-- Sidenav for smaller screens -->
     <ul class="sidenav" id="mobile-menu">
         <li><a href="{% url 'about' %}">About</a></li>
         <li><a href="{% url 'subscription_list' %}">Subscriptions</a></li>
@@ -115,23 +86,7 @@
 
     <!-- Import Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- Script for list.html -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let collapsibles = document.querySelectorAll('.collapsible');
-            M.Collapsible.init(collapsibles);
-            M.updateTextFields();
-
-            let sidenav = document.querySelectorAll('.sidenav');
-            M.Sidenav.init(sidenav);
-
-            document.querySelectorAll('.edit-btn').forEach(function(button) {
-                button.addEventListener('click', function() {
-                var form = this.nextElementSibling;
-                form.style.display = form.style.display === 'none' ? 'block' : 'none';
-                });
-            });
-        });
-      </script>
+    <!-- Script for initializing materialize components -->
+    <script src="{% static 'js/base.js' %}"></script>
 </body>
 </html>

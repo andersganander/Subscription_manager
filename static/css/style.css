@@ -18,10 +18,42 @@
     margin-bottom: 50px;
 }
 
+/* Might need to be adjusted */
 .footer-fixed{
     z-index: 10;
-    position: absolute;
+   /* position: absolute; */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
 } 
+
+/* From base.html */
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.footer-fixed {
+   
+}
+
+.subscription-details {
+    padding: 10px 0;
+}
+
+.edit-form {
+    display: none;
+}
 
 /* Custom styles */
 .bottom{
