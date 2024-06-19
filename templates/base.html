@@ -2,7 +2,6 @@
 {% load static %}
 {% load account %}
 {% url 'subscription_list' as list_url %}
-{% url 'service_list' as service_list_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -61,8 +60,7 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'subscription_list' %}">Subscriptions</a></li>
-                <!--<li><a href="">Reminders</a></li>
-                <li><a href="{% url 'service_list' %}">Services</a></li>    -->
+
                 <!-- AUTHENTICATION -->
                 {% if user.is_authenticated %}
                 <li class="nav-item">

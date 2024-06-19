@@ -21,7 +21,6 @@ from subscriptions import views
 urlpatterns = [
     path('', views.subscriptions_view, name='subscription_list'),
     path('admin/', admin.site.urls),
-    path('services/', include("services.urls")),
     path('accounts/', include('allauth.urls')),
     path('subscriptions/', include('subscriptions.urls')),
 ]
