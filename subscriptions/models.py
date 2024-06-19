@@ -28,13 +28,8 @@ class Subscription(models.Model):
     reminder_date = models.DateField(blank=True, null=True)
     reminder_notes = models.CharField(max_length=200, blank=True)
 
-
-    print(f"self.subscriber.username")
-    print(f"self.service.subscription_name")
-
     def __str__(self):
         return f"{self.subscriber.username} : {self.subscription_name}"
-        #return f"{self.name}"
 
     class Meta:
         unique_together = ('subscription_name', 'subscriber',)

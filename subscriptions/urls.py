@@ -1,5 +1,4 @@
 from django.urls import path
-#now import the views.py file into this code
 from . import views
 
 urlpatterns = [
@@ -10,5 +9,3 @@ urlpatterns = [
     path('summary/', views.subscriptions_summary_view, name='subscription_summary'),
     path('about/', views.about_view, name='about'),
 ]
-
-#  path('delete/<int:subscription_id>',views.subscription_delete_view, name='subscription_delete'),

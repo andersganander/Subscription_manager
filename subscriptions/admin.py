@@ -3,4 +3,3 @@ from .models import Subscription
 
 # Register your models here.
 admin.site.register(Subscription)
-#admin.site.register(Reminder)
