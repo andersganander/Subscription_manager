@@ -1,168 +1,171 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% url 'subscription_form' as add_url %}
 {% url 'subscription_edit' as edit_url %}
 {% url 'subscription_delete' as delete_url %}
 {% url 'subscription_summary' as summary_url %}
+{% load static %}
 
 {% block content %}
 
-     
-     <div class="container collapsible-margin-bottom">
-       
+<div class="container collapsible-margin-bottom">
 
-        <h4 class="center-align">My Subscriptions</h4>
-       
-        <!-- Subscription list start-->
-        <div class="row">
-            <div class="col s12 m8 offset-m2">
-                
-                  <!-- Show message if there is any-->
-                {% for message in messages %}
-                    <div style="background-color:rgb(137, 225, 121)" width="100">
-                        {{ message | safe }}
-                    </div>
-                {% endfor %}
+    <h4 class="center-align">My Subscriptions</h4>
 
-                <div id="summary_div" class="row valign-wrapper" style="justify-content: space-between; align-items: flex-end;">
-                    <div class="col s8">
-                        {% if subscriptions %}
-                        <h6 class="valign-wrapper" style="height: 100%;"><b>{{ summary.total_active }} active subscriptions, monthly cost: {{ summary.total_price }}</b></h6>
-                        {% else %}
-                        <h6 class="valign-wrapper" style="height: 100%;"><b>You have no subscriptions!!</b></h6>
-                        {% endif %}
-                    </div>
-                    <div class="col s4 right-align">
-                        <a href="{% url 'subscription_form' %}"><i class="small material-icons right green-text padding-top">add</i></a>
-                        <a href="{% url 'subscription_summary' %}"><i class="small material-icons right green-text padding-top">insert_chart</i></a>
-                    </div>
-                </div>
+    <!-- Subscription list start-->
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
 
-                <ul class="collapsible">
-                    
-                    {% for subscription in subscriptions %}
-        <li>
-            <div class="collapsible-header">
-                {% if subscription.active %}
-                <span>
-                    <i class="material-icons">expand_more</i>
-                    <i class="material-icons green-text">radio_button_checked</i>
-                    {% if subscription.reminder_date %}
-                        {% if today >= subscription.reminder_date %}
-                            <i class="material-icons orange-text">message</i>
-                        {% else %}
-                            <i class="material-icons green-text">remove_red_eye</i>
-                        {% endif %}
+            <!-- Show message if there is any-->
+            {% for message in messages %}
+            <div class="message light-green lighten-3" width="100">
+                {{ message | safe }}
+            </div>
+            {% endfor %}
 
+            <!-- Summary -->
+            <div id="summary_div" class="row valign-wrapper"
+                style="justify-content: space-between; align-items: flex-end;">
+                <div class="col s8">
+                    {% if subscriptions %}
+                    <h6 class="valign-wrapper" style="height: 100%;"><b>{{ summary.total_active }} active subscriptions,
+                            monthly cost: {{ summary.total_price }}</b></h6>
                     {% else %}
-                        <i class="material-icons grey-text text-lighten-2">remove_red_eye</i>
+                    <h6 class="valign-wrapper" style="height: 100%;"><b>You have no subscriptions!!</b></h6>
                     {% endif %}
-
-                     {{ subscription.subscription_name }}
-                </span>
-                <span>
-                    {{ subscription.monthly_price }}
-                </span>
-
-                {% else %}
-                <span>
-                    <i class="material-icons">expand_more</i>
-                    <i class="material-icons red-text">radio_button_unchecked</i>
-                    <i class="material-icons grey-text text-lighten-2">remove_red_eye</i>
-                    <span class="grey-text"> {{ subscription.subscription_name }} </span>
-                </span>
-                <span class="grey-text">{{ subscription.monthly_price }}</span>
-                {% endif %}
-                
+                </div>
+                <div class="col s4 right-align">
+                    <a href="{% url 'subscription_form' %}"><i
+                            class="small material-icons right green-text padding-top">add</i></a>
+                    <a href="{% url 'subscription_summary' %}"><i
+                            class="small material-icons right green-text padding-top">insert_chart</i></a>
+                </div>
             </div>
-            
-            <div class="collapsible-body">
-                <ul class="collection">
-                    <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
-                        <span class="title grey-text text-darken-1"><b>Active:</b></span>
-                        {% if subscription.active %}<span class="green lighten-4">Yes</span>
-                        {% else %}<span class="red lighten-4">No</span>
+
+            <!-- Subscription list -->
+            <ul class="collapsible">
+                {% for subscription in subscriptions %}
+                <li>
+                    <!-- Subscription title -->
+                    <div class="collapsible-header">
+                        {% if subscription.active %}
+                        <!-- Active subscription -->
+                        <span>
+                            <i class="material-icons">expand_more</i>
+                            <i class="material-icons green-text">radio_button_checked</i>
+                            {% if subscription.reminder_date %}
+                            {% if today >= subscription.reminder_date %}
+                            <i class="material-icons orange-text">message</i>
+                            {% else %}
+                            <i class="material-icons green-text">remove_red_eye</i>
+                            {% endif %}
+
+                            {% else %}
+                            <i class="material-icons grey-text text-lighten-2">remove_red_eye</i>
+                            {% endif %}
+
+                            {{ subscription.subscription_name }}
+                        </span>
+                        <span>
+                            {{ subscription.monthly_price }}
+                        </span>
+
+                        {% else %}
+                        <!-- Inactive subscription -->
+                        <span>
+                            <i class="material-icons">expand_more</i>
+                            <i class="material-icons red-text">radio_button_unchecked</i>
+                            <i class="material-icons grey-text text-lighten-2">remove_red_eye</i>
+                            <span class="grey-text"> {{ subscription.subscription_name }} </span>
+                        </span>
+                        <span class="grey-text">{{ subscription.monthly_price }}</span>
                         {% endif %}
-                    </li>
-                    <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
-                        <span class="title grey-text text-darken-1"><b>Service:</b></span>
-                        <span class="grey-text text-darken-1"> {{ subscription.service.name }}</span>
-                    </li>
-                    <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
-                        <span class="title grey-text text-darken-1"><b>Price:</b></span>
-                        <span class="grey-text text-darken-1"> {{ subscription.monthly_price }}</span>
-                    </li>
-                    <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
-                        <span class="title grey-text text-darken-1"><b>Category:</b></span> 
-                        <span class="grey-text text-darken-1"> {{ subscription.subscription_category.name }}</span>
-                    </li>
-                    <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
-                        <span class="title grey-text text-darken-1"><b>Notes:</b></span>
-                        <span class="grey-text text-darken-1"> {{ subscription.notes }}</span>
-                    </li>
-                    <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
-                        <span class="title grey-text text-darken-1"><b>Reminder E-mail:</b></span> 
-                        <span class="grey-text text-darken-1"> {{ subscription.reminder_email }}</span>
-                    </li>
-                    <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
-                        <span class="title grey-text text-darken-1"><b>Reminder Date:</b></span> 
-                        <span class="grey-text text-darken-1"> {{ subscription.reminder_date|date:"Y-m-d" }}</span>
-                    </li>
-                    <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
-                        <span class="title grey-text text-darken-1"><b>Reminder Notes:</b></span>
-                        <span class="grey-text text-darken-1 {% if today >= subscription.reminder_date %} orange lighten-4{% endif %}"> 
-                            {{ subscription.reminder_notes }}
-                        </span> 
-                    </li>
-                    <li>
-                        
-                        <div class="right button-padding">    
-                            <a href="{% url 'subscription_edit' subscription.id %}" class="btn-small waves-effect waves-light"><i class="material-icons left">edit</i>Edit</a>
-                        </div>
-                        <div class="right button-padding">    
-                            <a href="#delete-modal{{ subscription.id }}" class="btn-small modal-trigger waves-effect waves-light red padding-right"><i class="material-icons left">delete</i>Delete</a>
-                        </div>
 
-                        <!-- Modal Structure -->
-                        <div id="delete-modal{{ subscription.id }}" class="modal delete-modal">
-                            <div class="modal-content">
-                                <h5>Confirm Deletion</h5>
-                                <p>Are you sure you want to delete this subscription?</p>
-                                <p>Cou can also edit the subscription and set it to inactive.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a> -->
-                                <a href="#!" class="btn-small modal-close waves-effect waves-light red">Cancel</a>
-                                <form action="{% url 'subscription_delete' subscription.id %}" method="post" style="display: inline;">
-                                    {% csrf_token %}
-                                   <!--<button type="submit" class="modal-close waves-effect waves-red btn-flat">Delete</button>-->
-                                   <button type="submit" class="btn-small waves-effect waves-light green">Delete</button>
+                    </div>
 
-                                </form>
+                    <!-- Subscription details -->
+                    <div class="collapsible-body">
+                        <ul class="collection">
+                            <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
+                                <span class="title grey-text text-darken-1"><b>Active:</b></span>
+                                {% if subscription.active %}<span class="green lighten-4">Yes</span>
+                                {% else %}<span class="red lighten-4">No</span>
+                                {% endif %}
+                            </li>
+                            <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
+                                <span class="title grey-text text-darken-1"><b>Service:</b></span>
+                                <span class="grey-text text-darken-1"> {{ subscription.service.name }}</span>
+                            </li>
+                            <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
+                                <span class="title grey-text text-darken-1"><b>Price:</b></span>
+                                <span class="grey-text text-darken-1"> {{ subscription.monthly_price }}</span>
+                            </li>
+                            <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
+                                <span class="title grey-text text-darken-1"><b>Category:</b></span>
+                                <span class="grey-text text-darken-1">
+                                    {{ subscription.subscription_category.name }}</span>
+                            </li>
+                            <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
+                                <span class="title grey-text text-darken-1"><b>Notes:</b></span>
+                                <span class="grey-text text-darken-1"> {{ subscription.notes }}</span>
+                            </li>
+                            <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
+                                <span class="title grey-text text-darken-1"><b>Reminder E-mail:</b></span>
+                                <span class="grey-text text-darken-1"> {{ subscription.reminder_email }}</span>
+                            </li>
+                            <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
+                                <span class="title grey-text text-darken-1"><b>Reminder Date:</b></span>
+                                <span class="grey-text text-darken-1">
+                                    {{ subscription.reminder_date|date:"Y-m-d" }}</span>
+                            </li>
+                            <li class="collection-item {% if not subscription.active %} grey lighten-4 {% endif %}">
+                                <span class="title grey-text text-darken-1"><b>Reminder Notes:</b></span>
+                                <span
+                                    class="grey-text text-darken-1 {% if today >= subscription.reminder_date %} orange lighten-4{% endif %}">
+                                    {{ subscription.reminder_notes }}
+                                </span>
+                            </li>
+                            <li>
 
-                                <!-- <a href="#!" class="modal-close waves-effect waves-red btn-flat" onclick="deleteSubscription()">Delete</a>-->
-                            </div>
-                        </div>
+                                <div class="right button-padding">
+                                    <a href="{% url 'subscription_edit' subscription.id %}"
+                                        class="btn-small waves-effect waves-light"><i
+                                            class="material-icons left">edit</i>Edit</a>
+                                </div>
+                                <div class="right button-padding">
+                                    <a href="#delete-modal{{ subscription.id }}"
+                                        class="btn-small modal-trigger waves-effect waves-light red padding-right"><i
+                                            class="material-icons left">delete</i>Delete</a>
+                                </div>
 
-                    </li>
-                </ul>
-                
-            </div>
-            
-        </li>
-        {% endfor %}
+                                <!-- Pop up modal for delete conformation -->
+                                <div id="delete-modal{{ subscription.id }}" class="modal delete-modal">
+                                    <div class="modal-content">
+                                        <h5>Confirm Deletion</h5>
+                                        <p>Are you sure you want to delete this subscription?</p>
+                                        <p>Cou can also edit the subscription and set it to inactive.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!"
+                                            class="btn-small modal-close waves-effect waves-light red">Cancel</a>
+                                        <form action="{% url 'subscription_delete' subscription.id %}" method="post"
+                                            style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit"
+                                                class="btn-small waves-effect waves-light green">Delete</button>
 
-                </ul>
-            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
-        <!-- Subscription list end-->
-    <!-- End Div Container-->
     </div>
+</div>
 
-    <script>
-         document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.modal');
-            var instances = M.Modal.init(elems);
-        });
-    </script>
- 
+<script src="{% static 'js/list.js' %}"></script>
+
 {% endblock content %}

@@ -18,15 +18,9 @@
     margin-bottom: 50px;
 }
 
-
 .footer-fixed{
     z-index: 10;
     position: absolute;
-}
-
-.delete-modal { 
-    /* width: 50% !important ; 
-    height: 50% !important ;  */
 } 
 
 /* Custom styles */
@@ -58,3 +52,9 @@
 .padding-top{
     margin-top: 10px;
 }
+
+.message{
+    font-weight: bold;
+    width: 100%;
+}
+

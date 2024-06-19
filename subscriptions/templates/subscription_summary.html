@@ -1,59 +1,58 @@
-
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% url 'subscription_list' as list_url %}
 
-
 {% block content %}
-    <!-- Show message if there is any-->
-    {% for message in messages %}
-    <div style="background-color:rgb(137, 225, 121)" width="100">
-        {{ message | safe }}
-    </div>
-    {% endfor %}
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <div class="container">
-                <!--<p>{{ cat_summary }}</p>-->
-                <h4>Summary</h4>
-
-                <div id="summary_div" class="row valign-wrapper" style="justify-content: space-between; align-items: flex-end;">
-                    <div class="col s8">
-                        <h6 class="valign-wrapper" style="height: 100%;"><b>{{ summary.total_active }} active subscriptions, monthly cost: {{ summary.total_price }}</b></h6>
-                    </div>
-                    <div class="col s4 right-align">
-                        <a href="{% url 'subscription_form' %}"><i class="small material-icons right green-text padding-top">add</i></a>
-                        <a href="{% url 'subscription_list' %}"><i class="small material-icons right green-text padding-top">list</i></a>
-                    </div>
+<!-- Show message if there is any-->
+{% for message in messages %}
+<div class="message light-green lighten-3" width="100">
+    {{ message | safe }}
+</div>
+{% endfor %}
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        <div class="container">
+            <h4>Summary</h4>
+            <div id="summary_div" class="row valign-wrapper"
+                style="justify-content: space-between; align-items: flex-end;">
+                <div class="col s8">
+                    <h6 class="valign-wrapper" style="height: 100%;"><b>{{ summary.total_active }} active subscriptions,
+                            monthly cost: {{ summary.total_price }}</b></h6>
                 </div>
-
-                <table class="striped">
-                    <thead>
-                      <tr>
-                          <th>Category</th>
-                          <th class="cell-centered">Services</th>
-                          <th class="cell-centered">Monthly cost</th>
-                      </tr>
-                    </thead>
-            
-                    <tbody>
-                        {% for category in cat_summary %}
-                        <tr>
-                            <td>{{ category.category_name }}</td>
-                            <td class="cell-centered">{{ category.subscription_count }}</td>
-                            <td class="cell-centered">{{ category.total_cost }}</td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="3">You have no active subscriptions.</td>
-                        </tr>
-                        {% endfor %}
-                     
-                    </tbody>
-                  </table>
-           
+                <div class="col s4 right-align">
+                    <a href="{% url 'subscription_form' %}"><i
+                            class="small material-icons right green-text padding-top">add</i></a>
+                    <a href="{% url 'subscription_list' %}"><i
+                            class="small material-icons right green-text padding-top">list</i></a>
+                </div>
             </div>
+
+            <!-- Table -->
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th class="cell-centered">Services</th>
+                        <th class="cell-centered">Monthly cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows -->
+                    {% for category in cat_summary %}
+                    <tr>
+                        <td>{{ category.category_name }}</td>
+                        <td class="cell-centered">{{ category.subscription_count }}</td>
+                        <td class="cell-centered">{{ category.total_cost }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">You have no active subscriptions.</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
 {% endblock content %}
-
