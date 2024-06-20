@@ -5,7 +5,7 @@ class Category(models.Model):
     description = models.TextField(blank=True)
     
     # Make icon optional
-    icon = models.CharField(max_length=200, help_text='Add the name of the Font Awesome icon')
+    icon = models.CharField(max_length=200, blank=True)
     color = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
