@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let tooltips = document.querySelectorAll('.tooltipped');
     M.Tooltip.init(tooltips);
 
+    // Sort categories in select
+    sortSelectEntries(document.getElementById('id_subscription_category')); // Sorts the services list alphabetically
+
     // event listener for link to clear reminder input fields
     var resetLink = document.getElementById('clear_reminder');
 
