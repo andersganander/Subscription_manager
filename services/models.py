@@ -15,7 +15,7 @@ class Service(models.Model):
     name = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True)
     url = models.CharField(max_length=200, blank=True)
-    default_price = models.IntegerField(blank=True)
+    default_price = models.IntegerField()
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE,
         related_name="service_categorys"
