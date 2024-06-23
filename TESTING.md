@@ -1,5 +1,8 @@
+## Table of contents
+
 <!-- TOC -->
 
+- [Table of contents](#table-of-contents)
 - [Manual Testing](#manual-testing)
     - [Epic: Account](#epic-account)
     - [Epic: Navigation](#epic-navigation)
@@ -7,10 +10,8 @@
     - [Epic: Reminders](#epic-reminders)
     - [Epic: Services](#epic-services)
     - [Epic: Categories](#epic-categories)
-    - [Confirm Delete Recipe Page](#confirm-delete-recipe-page)
 - [Validator Testing](#validator-testing)
     - [HTML](#html)
-        - [Note 1:](#note-1)
         - [Fixed Errors](#fixed-errors)
     - [CSS](#css)
     - [Javascript](#javascript)
@@ -56,60 +57,64 @@ All user stories have been manually tested upon implementation, and this has bee
 
 ### Epic: Services
 
+![Manual Testing - Services](docs/readme_images/testing/MT_Ser_1.png)
+
 ### Epic: Categories
 
-### Confirm Delete Recipe Page
+![Manual Testing - Categorys](docs/readme_images/testing/MT_Cat_1.png)
 
 ## Validator Testing
 
 ### HTML
 
-All HTML pages were run through the [W3C HTML Validator](https://validator.w3.org/). See results in below table.
+All HTML pages were run through the [W3C HTML Validator](https://validator.w3.org/). For the pages that can be accessed without login, the "Validate by URI" was used. For the pages that does require log in the page source was used as input to the validator, using "Validate by Direct Input".
 
 | Page                   | Logged Out | Logged In |
 |------------------------|------------|-----------|
 | about.html             |            |           |
 | add_subscribtion.html  | N/A        | NO ERRORS |
-| edit_subscription.html | N/A        | NO ERRORS |
+| edit_subscription.html | N/A        | ERROR 1 |
 | subscription_list.html | N/A        | NO ERRORS |
 | subscription_summary   | N/A        | NO ERRORS |
 | login.html             | NO ERRORS  | N/A       |
 | logout.html            | N/A        | NO ERRORS |
-| signup.html            | No errors  | N/A       |
+| signup.html            | ERROR 2    | N/A       |
 | 400.html               | No errors  | No errors |
-| 500.html               | No errors  | No errors |
+| 500.html               | N/A        | No errors |
 
-#### Note 1: 
 
 #### Fixed Errors
+**ERROR 1**
+![HTML Validation](docs/readme_images/testing/Val_1.png)
+Fixed by removing the action attribute.
+
+#### Unfixed Errors
+The errors below relate to the validation of signup.html, which belongs to the all-auth library. I have troubleshooted the issue to see if it is related to the changes I have made, but since the error occurs when the code for the form is generated, I cannot see that it has to do with my code. I have also investigated the error by removing all my own code, but the error persists.
+
+![HTML Validation](docs/readme_images/testing/Val_2.png)
 
 
 ### CSS
-No errors were found when passing my CSS file through the official [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
 
- <details>
+The stylesheet style.css was validated using [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) without any errors found.
 
- <summary>CSS</summary>
-
-![CSS Validation](docs/readme_images/css_validation.png)
- </details>
 
 ### Javascript
-Javascript was validated with [Jshint](https://jshint.com/) with the following results:
+The Javascript files was validated with [Jshint](https://jshint.com/) with the following results:
 
 | Script   | Result      | Comments       |
 |----------|-------------|----------------|
-| add.js   | 1 warning   | Wrn 1          |
+| add.js   | 1 warning   | Warning 1      |
 | base.js  | no warnings | Note 1         |
 | edit.js  | no warnings | Note 1, Note 2 |
 | list.js  | no warnings | Note 1, Note 2 |
 
 
-Error 1: The array literal notation [] is preferable. Fixed ([#80](https://github.com/andersganander/Subscription_manager/issues/80)).
-Note 1 : Comments about the way Materialize components are initialized, f ex:
-M.updateTextFields();
-As it was mentioned, but not as a warning I just let it be. It's also the way that Materialize components are initialized in the documentation.
-Note 2: One unused variabled reported. Fixed.
+**Warning 1:** The array literal notation [] is preferable. Fixed ([#80](https://github.com/andersganander/Subscription_manager/issues/80)).<br>
+**Note 1:** Comments about the way Materialize components are initialized, f ex:
+<code>M.updateTextFields();</code><br>
+As it was mentioned, but not as a warning I just let it be. It's also the way that Materialize components are initialized in the documentation.<br>
+**Note 2:** One unused variabled reported. Fixed.
 
 <details>
 

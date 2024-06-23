@@ -33,6 +33,7 @@
 <!-- json data with service names and price -->
 {{ services_dict |json_script:"servicesData" }}
 
+<script src="{% static 'js/sortSelect.js' %}"></script>
 <script src="{% static 'js/add.js' %}"></script>
 
 {% endblock %}

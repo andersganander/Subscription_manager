@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Initializing materialize elemets  
     var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, {
+    M.Datepicker.init(elems, {
         format: 'yyyy-mm-dd'
     });
     let tooltips = document.querySelectorAll('.tooltipped');
     M.Tooltip.init(tooltips);
+
+    // Sort categories in select
+    sortSelectEntries(document.getElementById('id_subscription_category')); // Sorts the services list alphabetically
 
     // event listener for link to clear reminder input fields
     var resetLink = document.getElementById('clear_reminder');
