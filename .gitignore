@@ -10,4 +10,5 @@ cloudinary_python.txt
 env.py
 old.html
 materialize.min.css
-Testing.md
+*.md
+README.md
