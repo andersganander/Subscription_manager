@@ -2,13 +2,53 @@
 
 Subscription Manager is a powerful tool designed to simplify the way you handle your subscriptions. Keeping track of various subscriptions for online services can be challenging. It’s often difficult to get a clear overview of your monthly expenses. Subscription Manager is here to help you manage and monitor all your subscriptions in one place.
 
+![Am i responsive](docs/readme_images/amiresponsive.png)
+
 The live link can be found here -[Subscription Manager](https://subscription-manager-da751aeb9bdc.herokuapp.com/)
 
 ## Table of Contents
 
-<small></small>
+<!-- TOC -->
 
-## User Experience (UX)
+- [Subscription Manager](#subscription-manager)
+    - [Table of Contents](#table-of-contents)
+        - [User Stories](#user-stories)
+            - [EPIC | Accounts](#epic--accounts)
+            - [EPIC | Navigation](#epic--navigation)
+            - [EPIC | Subscriptions](#epic--subscriptions)
+            - [EPIC | Reminders](#epic--reminders)
+            - [EPIC | Services](#epic--services)
+            - [EPIC | Categories](#epic--categories)
+        - [Design](#design)
+            - [Colour Scheme](#colour-scheme)
+            - [Icons](#icons)
+            - [Wireframes](#wireframes)
+    - [Agile Methodology](#agile-methodology)
+    - [Data Model](#data-model)
+    - [Testing](#testing)
+    - [Features](#features)
+        - [Login and sign up](#login-and-sign-up)
+        - [Navigation](#navigation)
+        - [Subscription](#subscription)
+        - [Error Pages](#error-pages)
+        - [Not implemented](#not-implemented)
+        - [Future Features](#future-features)
+    - [Deployment - Heroku](#deployment---heroku)
+        - [Create the Heroku App:](#create-the-heroku-app)
+        - [Attach the Postgres database:](#attach-the-postgres-database)
+        - [Prepare the environment and settings.py file:](#prepare-the-environment-and-settingspy-file)
+        - [Create files / directories](#create-files--directories)
+        - [Update Heroku Config Vars](#update-heroku-config-vars)
+        - [Deploy](#deploy)
+    - [Forking this repository](#forking-this-repository)
+    - [Cloning this repository](#cloning-this-repository)
+    - [Languages](#languages)
+    - [Frameworks - Libraries - Programs Used](#frameworks---libraries---programs-used)
+    - [Credits](#credits)
+    - [Acknowledgments](#acknowledgments)
+
+<!-- /TOC -->
+
 
 ### User Stories
 
@@ -222,65 +262,87 @@ Describe changes made during development...
 
 Testing and results can be found [here](/TESTING.md)
 
-
-### User Authentication
-
-### Form Validation
-
-If incorrect or empty data is added to a form, the form won't submit and a warning will appear to the user informing them what field raised the error.
-
-### Database Security
-
-The database url and secret key are stored in the env.py file to prevent unwanted connections to the database and this was set up before the first push to Github.
-
-Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this site.
-
-### Custom error pages:
-
-Custom Error Pages were created to give the user more information on the error and to provide them with buttons to guide them back to the site.
-
-- 400 Bad Request - The Easy Eater is unable to handle this request.
-- 404 Page Not Found - The page you're looking for doesn't exist.
-- 500 Server Error - The Easy Eater is currently unable to handle this request
-
 ## Features
 
 ### Login and sign up
 
-- Start page - login
-- Sign up
+- When user goto the start page and is not logged in, the login page is shown
+
+<img src="docs/readme_images/features/Login_1.png" width="400" alt="login" >
+
+- There is also a link to the sign up page where the user can register
+
+<img src="docs/readme_images/features/SignUp.jpg" width="400" alt="Sign up" >
 
 ### Navigation
 
-**Navbar**
+- On medium and larger screens, there is a navbar
+- The menu contains options for About and Subscriptions
+- Depending on if the user has logged in or not there are also options for Login, Logout and Register
 
-- Clickin
+<img src="docs/readme_images/features/NavBar.jpg" width="400" alt="Menu" >
 
-**Sidemenu**
+- On smaller screens there's a hamburger menu and a slide out menu to the left with the same options and the same logic for login and logout
 
-* wqwq
+<img src="docs/readme_images/features/SideMenu.jpg" width="400" alt="Slide out menu" >
 
-### Subscription
+### Subscriptions
 
-- The home page includes a call to action section which encourages the user to sign up to the site w
+- When the user has logged in, the subscription list is shown.
+- The list contains a summary at the top with two icons to the right 
+- In the list, the subscriptions are shown with name and cost. The radio button icon indicates if the subscription is active or not and the eye icon changes color depending if there is a reminder or not.
+
+<img src="docs/readme_images/features/List_1.jpg" width="400" alt="List" >
+
+- If the user has no subscriptions, the list is empty.
+
+<img src="docs/readme_images/features/List_2.jpg" width="400" alt="Empty List" >
 
 **Add subscription**
 
-![Add](docs/readme_images/features/Add_1.jpg)
+- The green plus sign in the summary row is used to add a new subscription
+- When the icon is clicked, the Add subscription form is shown.
 
-- The 
+<img src="docs/readme_images/features/Add_1.png" width="400" alt="Add subscription" >
+
+- When a service is celected from the list, the name and price fields are populated with default values which can be altered by the user.
+
+<img src="docs/readme_images/features/Add_2.png" width="400" alt="Add subscription" >
+
+- When the submit button is clicked, the subscription is saved and the updated subscription list is shown.
+
+**View subscription**
+
+- When the user clicks on a subscription in the list, the detail view is shown
+- The details view contains all the information about the subscription and all fields can be edited by the user (except for the subscription field.)
+- If the subscription is inactive, the fields have a grey background
+- To close the details view, the user can click on the subscription name again or another subscription in the list
+
+<img src="docs/readme_images/features/View_1.png" width="400" alt="View subscription" >
 
 **Edit subscription**
 
+- To edit the subscription, the user can click on the edit button
+- The edit subscription form contains all the editable fields
+- When the submit button is clicked, the subscription is saved and the updated subscription list is shown.
 
+<img src="docs/readme_images/features/Edit_1.png" width="400" alt="Edit subscription" >
 
 **Delete subscription**
+- In the details view there is also a delete button
+- When the user clicks the delete button, a confirmation dialog is shown
+- If the user clicks the delete button, the subscription is deleted and the list is updated
 
-
+<img src="docs/readme_images/features/Delete_1.png" width="400" alt="Delete subscription" >
 
 **Add reminder**
+- The user can add a reminder by editing the subscription and fill in the reminder fields
+- The reminder will then be sent to the mail address specified on the chose date and a message icon will indicate that a reminder has been triggered.
+- There's also an icon (a green eye) showing that there is a reminder 
 
+<img src="docs/readme_images/features/Reminder_1.png" width="400" alt="Reminder" >
 
+<img src="docs/readme_images/features/Reminder_2.png" width="400" alt="Reminder" >
 
 **Edit reminder**
 
