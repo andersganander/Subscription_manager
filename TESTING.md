@@ -88,10 +88,10 @@ All HTML pages were run through the [W3C HTML Validator](https://validator.w3.or
 ![HTML Validation](docs/readme_images/testing/Val_1.png)
 Fixed by removing the action attribute.
 
-#### Unfixed Errors
-The errors below relate to the validation of signup.html, which belongs to the all-auth library. I have troubleshooted the issue to see if it is related to the changes I have made, but since the error occurs when the code for the form is generated, I cannot see that it has to do with my code. I have also investigated the error by removing all my own code, but the error persists.
+**ERROR 2**
 
 ![HTML Validation](docs/readme_images/testing/Val_2.png)
+This error was harder to find a solution for. After a while i realised that the problem was related to the ul inside the span, which is not allowed. This was resolved by changing <code>form.as_p</code> to <code>form.as_div</code> .  
 
 
 ### CSS
@@ -116,26 +116,94 @@ The Javascript files was validated with [Jshint](https://jshint.com/) with the f
 As it was mentioned, but not as a warning I just let it be. It's also the way that Materialize components are initialized in the documentation.<br>
 **Note 2:** One unused variabled reported. Fixed.
 
-<details>
-
-<summary>Jshint</summary>
-
-![Jshint](docs/readme_images/jshint_validation.png)
-</details>
-
 ### Python
 All Python files were run through [Pep8](http://pep8online.com/) with no errors found. 
 
 ### Lighthouse
 
-Lighthouse validation was run on all pages (both mobile and desktop) in order to check accessibility and performance. At first I received the warning *'Background and foreground colors do not have a sufficient contrast ratio'* in relation to buttons where I had used the Bootstrap class `btn-info`. After I updated the button styling I received the below scores. 
+The pages of the web site were tested using Lighthouse to check performance and accessibility. 
 
-| Page           | Performance  | Accessibility | Best Practices  | SEO |
-|----------------|:------------:|:-------------:|:---------------:|:---:|
-|                |              |               |                 |     |
-| Desktop        |              |               |                 |     |
-| Home           |          100 |           100 |             100 | 100 |
+<details>
+<summary>Mobile</summary>
 
+**Log in**
+![Lighthouse validation](docs/readme_images/testing/LH_M_1.png)
+<br>
+
+**Sign up**
+![Lighthouse validation](docs/readme_images/testing/LH_M_2.png)
+<br>
+
+**About**
+TBD
+<br>
+
+**Subscription List**
+![Lighthouse validation](docs/readme_images/testing/LH_M_4.png)
+<br>
+
+**Add subscription**
+![Lighthouse validation](docs/readme_images/testing/LH_M_5.png)
+<br>
+
+**Edit subscription**
+![Lighthouse validation](docs/readme_images/testing/LH_M_6.png)
+<br>
+
+**Delete subscription**
+Not validated. It seems like the modal used in delete subscription is not "compatible" with Lighthouse validation. When trying to validate the delete page the modal disappears and it looks like the subscription list (which is the page that is shown after deletion) is validated instead
+<br>
+
+**Subscription summary**
+![Lighthouse validation](docs/readme_images/testing/LH_M_7.png)
+<br>
+
+**Log out**
+![Lighthouse validation](docs/readme_images/testing/LH_M_8.png)
+<br>
+
+</details>
+
+<details>
+<summary>Desktop</summary>
+
+**Log in**
+![Lighthouse validation](docs/readme_images/testing/LH_DT_1.png)
+<br>
+
+**Sign up**
+![Lighthouse validation](docs/readme_images/testing/LH_DT_2.png)
+<br>
+
+**About**
+TBD
+<br>
+
+**Subscription List**
+![Lighthouse validation](docs/readme_images/testing/LH_DT_4.png)
+<br>
+
+**Add subscription**
+![Lighthouse validation](docs/readme_images/testing/LH_DT_5.png)
+<br>
+
+**Edit subscription**
+![Lighthouse validation](docs/readme_images/testing/LH_DT_6.png)
+<br>
+
+**Delete subscription**
+Not validated. It seems like the modal used in delete subscription is not "compatible" with Lighthouse validation. When trying to validate the delete page the modal disappears and it looks like the subscription list (which is the page that is shown after deletion) is validated instead
+<br>
+
+**Subscription summary**
+![Lighthouse validation](docs/readme_images/testing/LH_DT_7.png)
+<br>
+
+**Log out**
+![Lighthouse validation](docs/readme_images/testing/LH_DT_8.png)
+<br>
+
+</details>
 
 ## Browser Testing
 - The Website was tested on Google Chrome, Firefox, Safari browsers with no issues noted.
