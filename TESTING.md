@@ -4,25 +4,25 @@
 
 - [Table of contents](#table-of-contents)
 - [Manual Testing](#manual-testing)
-    - [Epic: Account](#epic-account)
-    - [Epic: Navigation](#epic-navigation)
-    - [Epic: Subscriptions](#epic-subscriptions)
-    - [Epic: Reminders](#epic-reminders)
-    - [Epic: Services](#epic-services)
-    - [Epic: Categories](#epic-categories)
+  - [Epic: Account](#epic-account)
+  - [Epic: Navigation](#epic-navigation)
+  - [Epic: Subscriptions](#epic-subscriptions)
+  - [Epic: Reminders](#epic-reminders)
+  - [Epic: Services](#epic-services)
+  - [Epic: Categories](#epic-categories)
 - [Validator Testing](#validator-testing)
-    - [HTML](#html)
-        - [Fixed Errors](#fixed-errors)
-    - [CSS](#css)
-    - [Javascript](#javascript)
-    - [Python](#python)
-    - [Lighthouse](#lighthouse)
+  - [HTML](#html)
+    - [Fixed Errors](#fixed-errors)
+  - [CSS](#css)
+  - [Javascript](#javascript)
+  - [Python](#python)
+  - [Lighthouse](#lighthouse)
 - [Browser Testing](#browser-testing)
 - [Device Testing](#device-testing)
 - [Bugs](#bugs)
-    - [Fixed Bugs](#fixed-bugs)
-        - [- #### Bug 1](#---bug-1)
-    - [Unfixed bugs:](#unfixed-bugs)
+  - [Fixed Bugs](#fixed-bugs)
+    - [- #### Bug 1](#---bug-1)
+  - [Unfixed bugs:](#unfixed-bugs)
 
 <!-- /TOC -->
 
@@ -69,11 +69,12 @@ All user stories have been manually tested upon implementation, and this has bee
 
 All HTML pages were run through the [W3C HTML Validator](https://validator.w3.org/). For the pages that can be accessed without login, the "Validate by URI" was used. For the pages that does require log in the page source was used as input to the validator, using "Validate by Direct Input".
 
+
 | Page                   | Logged Out | Logged In |
-|------------------------|------------|-----------|
+| ------------------------ | ------------ | ----------- |
 | about.html             |            |           |
 | add_subscribtion.html  | N/A        | NO ERRORS |
-| edit_subscription.html | N/A        | ERROR 1 |
+| edit_subscription.html | N/A        | ERROR 1   |
 | subscription_list.html | N/A        | NO ERRORS |
 | subscription_summary   | N/A        | NO ERRORS |
 | login.html             | NO ERRORS  | N/A       |
@@ -82,8 +83,8 @@ All HTML pages were run through the [W3C HTML Validator](https://validator.w3.or
 | 400.html               | No errors  | No errors |
 | 500.html               | N/A        | No errors |
 
-
 #### Fixed Errors
+
 **ERROR 1**
 ![HTML Validation](docs/readme_images/testing/Val_1.png)
 Fixed by removing the action attribute.
@@ -91,24 +92,23 @@ Fixed by removing the action attribute.
 **ERROR 2**
 
 ![HTML Validation](docs/readme_images/testing/Val_2.png)
-This error was harder to find a solution for. After a while i realised that the problem was related to the ul inside the span, which is not allowed. This was resolved by changing <code>form.as_p</code> to <code>form.as_div</code> .  
-
+This error was harder to find a solution for. After a while i realised that the problem was related to the ul inside the span, which is not allowed. This was resolved by changing <code>form.as_p</code> to <code>form.as_div</code> .
 
 ### CSS
 
 The stylesheet style.css was validated using [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) without any errors found.
 
-
 ### Javascript
+
 The Javascript files was validated with [Jshint](https://jshint.com/) with the following results:
 
-| Script   | Result      | Comments       |
-|----------|-------------|----------------|
-| add.js   | 1 warning   | Warning 1      |
-| base.js  | no warnings | Note 1         |
-| edit.js  | no warnings | Note 1, Note 2 |
-| list.js  | no warnings | Note 1, Note 2 |
 
+| Script  | Result      | Comments       |
+| --------- | ------------- | ---------------- |
+| add.js  | 1 warning   | Warning 1      |
+| base.js | no warnings | Note 1         |
+| edit.js | no warnings | Note 1, Note 2 |
+| list.js | no warnings | Note 1, Note 2 |
 
 **Warning 1:** The array literal notation [] is preferable. Fixed ([#80](https://github.com/andersganander/Subscription_manager/issues/80)).<br>
 **Note 1:** Comments about the way Materialize components are initialized, f ex:
@@ -117,11 +117,13 @@ As it was mentioned, but not as a warning I just let it be. It's also the way th
 **Note 2:** One unused variabled reported. Fixed.
 
 ### Python
-All Python files were run through [Pep8](http://pep8online.com/) with no errors found. 
+
+All Python files were run through the [CI Python Linter](https://pep8ci.herokuapp.com/) and all errors were corrected.
+
 
 ### Lighthouse
 
-The pages of the web site were tested using Lighthouse to check performance and accessibility. 
+The pages of the web site were tested using Lighthouse to check performance and accessibility.
 
 <details>
 <summary>Mobile</summary>
@@ -206,20 +208,20 @@ Not validated. It seems like the modal used in delete subscription is not "compa
 </details>
 
 ## Browser Testing
+
 - The Website was tested on Google Chrome, Firefox, Safari browsers with no issues noted.
-    
+
 ## Device Testing
+
 - The website was viewed on a variety of devices such as Desktop, Laptop, iPhone SE,  and iPad to ensure responsiveness on various screen sizes in both portrait and landscape mode. The website performed as intended. The responsive design was also checked using Chrome developer tools across multiple devices with structural integrity holding for the various sizes.
 
-
-## Bugs 
+## Bugs
 
 ### Fixed Bugs
 
 - #### Bug 1
-     - **Bug**: When
-     - **Fix**: in 
 
+  - **Bug**: When
+  - **Fix**: in
 
 ### Unfixed bugs:
- 

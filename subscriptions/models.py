@@ -4,6 +4,7 @@ from services.models import Service, Category
 
 # Create your models here.
 
+
 class Subscription(models.Model):
     monthly_price = models.IntegerField()
     notes = models.CharField(max_length=200, blank=True)
@@ -16,10 +17,10 @@ class Subscription(models.Model):
     subscription_name = models.CharField(max_length=100)
 
     subscriber = models.ForeignKey(
-        User, on_delete = models.CASCADE,
+        User, on_delete=models.CASCADE,
         related_name="subscriptions"
     )
-  
+
     subscription_category = models.ForeignKey(
         Category, null=True, blank=True, on_delete=models.SET_NULL,
         related_name="subscription_categorys"
