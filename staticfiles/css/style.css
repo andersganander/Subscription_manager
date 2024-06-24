@@ -90,3 +90,28 @@ main {
     width: 100%;
 }
 
+/* Styling for about page */
+.feature {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.feature div {
+    flex: 2;
+}
+
+.feature ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.feature img.feature-image {
+    flex: 1;
+    max-width: 100px;
+    margin-left: 20px;
+}
+
+
+

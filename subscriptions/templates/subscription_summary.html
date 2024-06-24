@@ -15,8 +15,8 @@
             <div id="summary_div" class="row valign-wrapper"
                 style="justify-content: space-between; align-items: flex-end;">
                 <div class="col s8">
-                    <h6 class="valign-wrapper" style="height: 100%;"><b>{{ summary.total_active }} active subscriptions,
-                            monthly cost: {{ summary.total_price }}</b></h6>
+                    <h6 class="valign-wrapper" style="height: 100%;"><b>{{ summary.total_active }} subscriptions,
+                            cost: {{ summary.total_price }}</b></h6>
                 </div>
                 <div class="col s4 right-align">
                     <a href="{% url 'subscription_form' %}"><i
