@@ -21,7 +21,6 @@
 - [Device Testing](#device-testing)
 - [Bugs](#bugs)
     - [Fixed Bugs](#fixed-bugs)
-        - [- #### Bug 1](#---bug-1)
     - [Unfixed bugs:](#unfixed-bugs)
 
 <!-- /TOC -->
@@ -136,9 +135,6 @@ The pages of the web site were tested using Lighthouse to check performance and 
 ![Lighthouse validation](docs/readme_images/testing/LH_M_2.png)
 <br>
 
-**About**
-TBD
-<br>
 
 **Subscription List**
 ![Lighthouse validation](docs/readme_images/testing/LH_M_4.png)
@@ -177,10 +173,6 @@ Not validated. It seems like the modal used in delete subscription is not "compa
 ![Lighthouse validation](docs/readme_images/testing/LH_DT_2.png)
 <br>
 
-**About**
-TBD
-<br>
-
 **Subscription List**
 ![Lighthouse validation](docs/readme_images/testing/LH_DT_4.png)
 <br>
@@ -213,15 +205,27 @@ Not validated. It seems like the modal used in delete subscription is not "compa
 
 ## Device Testing
 
-- The website was viewed on a variety of devices such as Desktop, Laptop, iPhone SE,  and iPad to ensure responsiveness on various screen sizes in both portrait and landscape mode. The website performed as intended. The responsive design was also checked using Chrome developer tools across multiple devices with structural integrity holding for the various sizes.
+- The website was viewed on different devices such as Desktop, Laptop, iPhone SE,  and iPad to ensure responsiveness. The responsive design was also checked using Chrome developer tools.
 
 ## Bugs
 
 ### Fixed Bugs
 
-- #### Bug 1
-
-  - **Bug**: When
-  - **Fix**: in
+![Fixed bugs](docs/readme_images/testing/Fixed_bugs.png)
 
 ### Unfixed bugs:
+
+The following bugs are still on the backlog.
+
+![Unfixed bugs](docs/readme_images/testing/Unfixed_bugs.png)
+
+**Fix Check box is not shown in edit subscription form #47**
+
+The initial idea was to use materialize's switch component in the edit subscription form. Due to an incompability between materialize and Django that was not as easy to implement as expected. There seem to be some inconsistence in the way Django renders it's checkbox widget and the html that materialize expects. The following discussion on StackOverflow describes the problem.
+https://stackoverflow.com/questions/54500348/django-checkbox-not-showing-up-in-html
+The proposed solution is to overwrite the default checkbox widget.
+
+To be able to change the value for active, a workaround has been implemented. Instead of using the checkboxinput widget, the select widget has been used:
+ 'active': forms.Select(attrs={'class': 'browser-default'}, choices=[[True,'Yes'],[False,'No']]),
+
+

@@ -20,8 +20,7 @@ The live link can be found here -[Subscription Manager](https://subscription-man
             - [EPIC | Services](#epic--services)
             - [EPIC | Categories](#epic--categories)
         - [Design](#design)
-            - [Colour Scheme](#colour-scheme)
-            - [Icons](#icons)
+            - [Colors and icons](#colors-and-icons)
             - [Wireframes](#wireframes)
     - [Agile Methodology](#agile-methodology)
     - [Data Model](#data-model)
@@ -29,19 +28,10 @@ The live link can be found here -[Subscription Manager](https://subscription-man
     - [Features](#features)
         - [Login and sign up](#login-and-sign-up)
         - [Navigation](#navigation)
-        - [Subscription](#subscription)
+        - [Subscriptions](#subscriptions)
         - [Error Pages](#error-pages)
-        - [Not implemented](#not-implemented)
         - [Future Features](#future-features)
-    - [Deployment - Heroku](#deployment---heroku)
-        - [Create the Heroku App:](#create-the-heroku-app)
-        - [Attach the Postgres database:](#attach-the-postgres-database)
-        - [Prepare the environment and settings.py file:](#prepare-the-environment-and-settingspy-file)
-        - [Create files / directories](#create-files--directories)
-        - [Update Heroku Config Vars](#update-heroku-config-vars)
-        - [Deploy](#deploy)
-    - [Forking this repository](#forking-this-repository)
-    - [Cloning this repository](#cloning-this-repository)
+    - [Deployment](#deployment)
     - [Languages](#languages)
     - [Frameworks - Libraries - Programs Used](#frameworks---libraries---programs-used)
     - [Credits](#credits)
@@ -110,13 +100,11 @@ The Subscription Manager web application is designed with a user-centric approac
 - Users can easily update their subscription details through an edit form that mirrors the simplicity of the add subscription form.
 - The application is built to be fully responsive, ensuring a seamless experience across devices, whether on a desktop, tablet, or mobile phone.
 
-#### Colour Scheme
+#### Colors and icons
 
-Colour...
+Colors and icons have been chosen to help the user find functions and understand the status of subscriptions. Icons are used both as buttons, for example, to "add a subscription" and to navigate to the summary page, but also to indicate if a subscription is active and if there is a reminder. The color light gray is used to indicate if a subscription is inactive. It is also used to show that there is no reminder, by making the reminder icon light gray. When there is a reminder, the icon turns green. If the reminder has been triggered, the icon changes to a message and turns orange to clearly indicate that there is a message.
 
-#### Icons
-
-There is only one static image ...
+Green and red are also use as background colors for the messages that are shown at the top, indicating an error or success.
 
 #### Wireframes
 
@@ -241,9 +229,13 @@ The  objective was not entirely reached and several activities had to be moved t
 <details>
 <summary>Sprint 5</summary>
 
-**Objective:** Last sprint. 
+**Objective:** The last sprint. Main focus to get everything prepared for the last deploy and the submit.
 
-![Sprint 1](docs/readme_images/sprints/Sprint_5.jpg)
+The original purpose of the final sprint was to only focus on the upcoming release and not add any new functionality or anything that could break the application. But since the hackathon too a lot of resources ther was some functionality left to implement at the end of sprint four.
+
+In the planning of the final sprint, some user stories were added as requests and suggestions that came in late. These have been added as feature improvements in the backlog column. In addition to the regular columns, a Release Preparations column was added, which contains activities that must be performed before the release. These have not been estimated and may affect how many activities in the ToDo can be completed.
+
+![Sprint 5](docs/readme_images/sprints/Sprint_5.png)
 
 
 </details>
@@ -254,7 +246,6 @@ The  objective was not entirely reached and several activities had to be moved t
 
 The diagram below details the database schema.
 
-Describe changes made during development...
 
 ![ER Diagram](docs/readme_images/SubCheck_ER_FINAL.drawio.png)
 
@@ -344,16 +335,21 @@ Testing and results can be found [here](/TESTING.md)
 
 <img src="docs/readme_images/features/Reminder_2.png" width="400" alt="Reminder" >
 
-**Edit reminder**
-
-
-
 **Clear reminder**
-
-
+- The reminder can be removed by clicking the red icon in the edit form and save
 
 **Summary view**
 
+- When clicking the green chart icon at the top of the subscription list, the summary view is shown.
+- The summary view shows a table with the number of subscriptions cost per category
+- Clicking the green list icon at the top will take the user back to the subscription list
+
+<img src="docs/readme_images/features/summary_1.png" width="400" alt="Summary" >
+
+**Admin panel**
+
+- The following is administrated from the admin panel (https://subscription-manager-da751aeb9bdc.herokuapp.com/admin)
+  - Services, users and categories
 
 
 ### Error Pages
@@ -361,54 +357,55 @@ Testing and results can be found [here](/TESTING.md)
 Custom Error Pages were created to give the user more information on the error and to guide them back to the site.
 
 
-
-### Not implemented
-
-- As a user I can receive a reminder when a subscription is nearing its expiry date so that i can decide whether to cancel the subscription or not
--
-
 ### Future Features
 
-The following user stories and functionality ...
+The following user stories were considered at the beginning of the project but were discarded at an early stage due to changes in the user interface that made them unnecessary. For example, the user now has the ability to choose their own name for a subscription, reducing the need to be able to send a request to the administrator.
 
-- As a user i can simulate canceling and adding subscriptions so that i can understand how it affects my monthly cost
 - As a user i can view all my reminders in a list so that i can get an overview and quickyly clear or add reminders
 - As a user i can suggest a service that is missing so that it can be added to the list
 - As an administrator i can view a list of suggested services so that i can decide if they will be added to the service list
 
-## Deployment - Heroku
+Some other ideas for user stories and functionlity that was added to the backlog during the project have been downprioritized and are still on the backlog for future implementation. 
+
+![Future improvements](docs/readme_images/future_improvements.png)
+
+
+
+## Deployment
+
+- Clone the repository from https://github.com/andersganander/Subscription_manager
+- Install the required libraries with the
+  <code>pip3 install -r requiremets.txt</code>
+- create an env.py file with the follwing settings
+  os.environ.setdefault("DATABASE_URL", )
+  os.environ.setdefault("EMAIL_HOST", )
+  os.environ.setdefault("EMAIL_USE_TLS", )
+  os.environ.setdefault("EMAIL_PORT", )
+  os.environ.setdefault("EMAIL_HOST_USER", )
+  os.environ.setdefault("EMAIL_HOST_PASSWORD", )
 
 To deploy this page to Heroku from its GitHub repository, the following steps were taken:
 
-### Create the Heroku App:
+- Navigate to heroku and create an account if you haven't got one already
+- Click the new button in the top right corner
+- Select create new app
+- Enter app name
+- Select region and click create app
+- Go to the settings tab and then click reveal config vars
+- Add the following config vars:
 
+![Config vars](docs/readme_images/configfig_vars.png)
+  
+- Click the deploy tab
+- Scroll down to Connect to GitHub and sign in / authorize when prompted
+- In the search box, find the repositoy you want to deploy and click connect
+- Scroll down to Manual deploy and choose the main branch
+- Click deploy
+- Go to Resources and add "web gunicorn subscription_manager.wsgi"
+- In Resources, add Add-on Heroku Scheduler
+- Open Heroku Scheduler and add the following job
 
-
-### Attach the Postgres database:
-
-
-
-### Prepare the environment and settings.py file:
-
-
-
-### Create files / directories
-
-
-
-### Update Heroku Config Vars
-
-
-
-### Deploy
-
-
-
-## Forking this repository
-
-
-
-## Cloning this repository
+![Scheduler](docs/readme_images/job.png)
 
 
 ## Languages
@@ -420,24 +417,38 @@ To deploy this page to Heroku from its GitHub repository, the following steps we
 
 ## Frameworks - Libraries - Programs Used
 
-- [Django](https://www.djangoproject.com/): Main python framework used in the development of this project
-- [Django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html): authentication library used to create the user accounts
+- [Django](https://www.djangoproject.com/): Python web application framework
+- [Django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html): authentication library
+- [Materialize](https://materializecss.com/) - A responsive front-end framwork based on Material Design
 - [PostgreSQL](https://www.postgresql.org/) was used as the database for this project.
+- [CI Database maker](https://dbs.ci-dbs.net/) was used to create the database for this project.
 - [Heroku](https://dashboard.heroku.com/login) - was used as the cloud based platform to deploy the site on.
 - [Balsamiq](https://balsamiq.com/) - Used to generate Wireframe images.
-- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - Used for overall development and tweaking, including testing responsiveness and performance.
+- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - Used for overall development and testing responsiveness and performance.
 - [GitHub](https://github.com/) - Used for version control and agile tool.
 - [W3C](https://www.w3.org/) - Used for HTML & CSS Validation.
-- [PEP8 Online](http://pep8online.com/) - used to validate all the Python code
+- [CI Python Linter](https://pep8ci.herokuapp.com/) - used to validate all the Python code
 - [Jshint](https://jshint.com/) - used to validate javascript
+- [Djecrety](https://djecrety.ir/) - used to create secret key
+
 
 ## Credits
 
 - [W3Schools](https://www.w3schools.com/)
-- [Django Docs](https://docs.djangoproject.com/en/4.0/)
+- [Django Docs](https://docs.djangoproject.com/)
 - [Stack Overflow](https://stackoverflow.com/)
 - [Code Institute - Blog Walkthrough Project](https://github.com/Code-Institute-Solutions/Django3blog)
+- [Materialize documentation](https://materializecss.com/)
+- [Article about allauth](https://emmakodes.hashnode.dev/how-to-build-a-user-signup-and-login-system-using-django-allauth)
+- [Sending mail in django project](https://www.geeksforgeeks.org/setup-sending-email-in-django-project/)
+- [Get users email](https://stackoverflow.com/questions/20400767/how-to-get-the-email-address-from-auth-user-table-of-requested-user-id-in-django) 
+- [Scheduling custom django commands in Heroku](https://devcenter.heroku.com/articles/scheduling-custom-django-management-commands)
+- [Aggregation](https://docs.djangoproject.com/en/5.0/topics/db/aggregation/)
+- [DB fields as unique](https://stackoverflow.com/questions/2201598/how-to-define-two-fields-unique-as-couple)
+- [Show select in sorted order (code used in project)](https://stackoverflow.com/questions/3467514/how-to-show-select-in-sorted-order) 
+
 
 ## Acknowledgments
-
-
+**Thank you**
+- My mentor, Antonio Rodriguez, for tips and support.
+- Slack community and especially the amazing Sedish Channel.
