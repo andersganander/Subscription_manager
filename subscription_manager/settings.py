@@ -20,12 +20,7 @@ if os.path.isfile('env.py'):
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ev6zjhz_2t(x^fr9s7q%#omoi9$o^w3*!six0db71ma$w81gz0'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -33,8 +28,6 @@ DEBUG = False
 ALLOWED_HOSTS = ['.ws.codeinstitute-ide.net',
                 '.herokuapp.com']
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -70,8 +63,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'subscription_manager.urls'
-#ROOT_URLCONF = 'services.urls'
-
 
 TEMPLATES = [
     {
@@ -92,16 +83,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'subscription_manager.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
@@ -110,9 +91,6 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.ws.codeinstitute-ide.net",
     "https://*.herokuapp.com",
 ]
-
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -131,9 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -143,7 +118,7 @@ USE_I18N = True
 USE_TZ = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# Läs från env.py
+
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
@@ -152,39 +127,10 @@ EMAIL_HOST = os.environ.get("EMAIL_HOST")
 EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS")
 EMAIL_PORT = os.environ.get("EMAIL_PORT")
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-#EMAIL_HOST_USER = 'no-reply@abonnemangskollen.nu'
-
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-#LOGIN_REDIRECT_URL = '/services'
-#ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/'
-
-# UNSURE IF ANY OF THIS IS NEEDED
-# https://emmakodes.hashnode.dev/how-to-build-a-user-signup-and-login-system-using-django-allauth
-
-# SITE_ID = 1
-# AUTHENTICATION_BACKENDS = (
-#     # Needed to login by username in Django admin, regardless of `allauth`
-#     "django.contrib.auth.backends.ModelBackend",
-# # `allauth` specific authentication methods, such as login by e-mail
-#     "allauth.account.auth_backends.AuthenticationBackend",
-# )
-
-# verification email will be sent to console
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-# # Controls the life time of the session.
-# ACCOUNT_SESSION_REMEMBER = True
