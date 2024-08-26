@@ -4,24 +4,25 @@
 
 - [Table of contents](#table-of-contents)
 - [Manual Testing](#manual-testing)
-  - [Epic: Account](#epic-account)
-  - [Epic: Navigation](#epic-navigation)
-  - [Epic: Subscriptions](#epic-subscriptions)
-  - [Epic: Reminders](#epic-reminders)
-  - [Epic: Services](#epic-services)
-  - [Epic: Categories](#epic-categories)
+    - [Epic: Account](#epic-account)
+    - [Epic: Navigation](#epic-navigation)
+    - [Epic: Subscriptions](#epic-subscriptions)
+    - [Epic: Reminders](#epic-reminders)
+    - [Epic: Services](#epic-services)
+    - [Epic: Categories](#epic-categories)
 - [Validator Testing](#validator-testing)
-  - [HTML](#html)
-    - [Fixed Errors](#fixed-errors)
-  - [CSS](#css)
-  - [Javascript](#javascript)
-  - [Python](#python)
-  - [Lighthouse](#lighthouse)
+    - [HTML](#html)
+        - [Fixed Errors](#fixed-errors)
+    - [CSS](#css)
+    - [Javascript](#javascript)
+    - [Python](#python)
+    - [Lighthouse](#lighthouse)
 - [Browser Testing](#browser-testing)
 - [Device Testing](#device-testing)
 - [Bugs](#bugs)
-  - [Fixed Bugs](#fixed-bugs)
-  - [Unfixed bugs:](#unfixed-bugs)
+    - [Fixed Bugs](#fixed-bugs)
+    - [Unfixed bugs:](#unfixed-bugs)
+    - [Fixed after assessment result](#fixed-after-assessment-result)
 
 <!-- /TOC -->
 
@@ -228,4 +229,6 @@ To be able to change the value for active, a workaround has been implemented. In
 
 ### Fixed after assessment result
 
-Issue #92
+The following bug was detected during assessment and fixed before resubmission of the project.
+
+[Issue #92](https://github.com/andersganander/Subscription_manager/issues/92)
