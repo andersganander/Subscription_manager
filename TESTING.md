@@ -4,24 +4,24 @@
 
 - [Table of contents](#table-of-contents)
 - [Manual Testing](#manual-testing)
-    - [Epic: Account](#epic-account)
-    - [Epic: Navigation](#epic-navigation)
-    - [Epic: Subscriptions](#epic-subscriptions)
-    - [Epic: Reminders](#epic-reminders)
-    - [Epic: Services](#epic-services)
-    - [Epic: Categories](#epic-categories)
+  - [Epic: Account](#epic-account)
+  - [Epic: Navigation](#epic-navigation)
+  - [Epic: Subscriptions](#epic-subscriptions)
+  - [Epic: Reminders](#epic-reminders)
+  - [Epic: Services](#epic-services)
+  - [Epic: Categories](#epic-categories)
 - [Validator Testing](#validator-testing)
-    - [HTML](#html)
-        - [Fixed Errors](#fixed-errors)
-    - [CSS](#css)
-    - [Javascript](#javascript)
-    - [Python](#python)
-    - [Lighthouse](#lighthouse)
+  - [HTML](#html)
+    - [Fixed Errors](#fixed-errors)
+  - [CSS](#css)
+  - [Javascript](#javascript)
+  - [Python](#python)
+  - [Lighthouse](#lighthouse)
 - [Browser Testing](#browser-testing)
 - [Device Testing](#device-testing)
 - [Bugs](#bugs)
-    - [Fixed Bugs](#fixed-bugs)
-    - [Unfixed bugs:](#unfixed-bugs)
+  - [Fixed Bugs](#fixed-bugs)
+  - [Unfixed bugs:](#unfixed-bugs)
 
 <!-- /TOC -->
 
@@ -119,7 +119,6 @@ As it was mentioned, but not as a warning I just let it be. It's also the way th
 
 All Python files were run through the [CI Python Linter](https://pep8ci.herokuapp.com/) and all errors were corrected.
 
-
 ### Lighthouse
 
 The pages of the web site were tested using Lighthouse to check performance and accessibility.
@@ -134,7 +133,6 @@ The pages of the web site were tested using Lighthouse to check performance and 
 **Sign up**
 ![Lighthouse validation](docs/readme_images/testing/LH_M_2.png)
 <br>
-
 
 **Subscription List**
 ![Lighthouse validation](docs/readme_images/testing/LH_M_4.png)
@@ -226,6 +224,8 @@ https://stackoverflow.com/questions/54500348/django-checkbox-not-showing-up-in-h
 The proposed solution is to overwrite the default checkbox widget.
 
 To be able to change the value for active, a workaround has been implemented. Instead of using the checkboxinput widget, the select widget has been used:
- 'active': forms.Select(attrs={'class': 'browser-default'}, choices=[[True,'Yes'],[False,'No']]),
+'active': forms.Select(attrs={'class': 'browser-default'}, choices=[[True,'Yes'],[False,'No']]),
 
+### Fixed after assessment result
 
+Issue #92
